@@ -10,6 +10,14 @@ public class ConecsionUsuarios {
 		private Connection Conector;
 		private final String campoUsuario ="usuario";
 		private final String campoContraseña ="contraseña";
+		private final String campoNombre ="nombre";
+		private final String campoApellido="apellido";
+		private final String campoNtarjeta="ntarjeta";
+		private final String campoDirecion="direcion";
+		private final String campoCorreo="correo";
+		private final String campoTelefono="telefono";
+		private final String campoFechanac="fechanac";
+		private final String campoSaldo="saldo";
 	public ConecsionUsuarios() throws SQLException {
 		String user = "root";
 		String password = "";
@@ -42,14 +50,14 @@ public class ConecsionUsuarios {
 			if(nombreLeido.equals(nombre)&&contraseñaLeida.equals(contraseña)) {
 				resultado.close();
 				canuto.close();
-				return 0;
+				return 0;// Valor que regresa si se inicia sesion
 			}else {
 				resultado.close();
 				canuto.close();
-				return 1;
+				return 1;//Valor que regresa si la contraseña no coincide
 			}
 		}
-		return -1;
+		return -1;//Valor que regresa si el usuario no existe 
 	}
 	private boolean exiteUsuario(String nombre) throws SQLException {
 		String sentencia = "SELECT `usuario` FROM `clientes` WHERE `usuario` = \""+nombre+"\";";
@@ -82,6 +90,76 @@ public class ConecsionUsuarios {
 		ResultSet resultado = canuto.executeQuery(sentencia);
 		resultado.next();
 		String valorDevolver=resultado.getString(campoContraseña);
+		resultado.close();
+		canuto.close();
+		return valorDevolver;
+	}
+	public void setContraseña(String Usuario, String Contraseña) throws SQLException {
+		String sentencia = "UPDATE `clientes` SET `"+campoContraseña+"`=\""+Contraseña+"\" WHERE `"+campoUsuario+"`= \""+Usuario+"\";";
+		Statement canuto = Conector.createStatement();
+		canuto.executeUpdate(sentencia);
+		canuto.close();
+	}
+	public void setNombre(String Usuario, String Nombre) throws SQLException {
+		String sentencia = "UPDATE `clientes` SET `"+campoNombre+"`=\""+Nombre+"\" WHERE `"+campoUsuario+"`= \""+Usuario+"\";";
+		Statement canuto = Conector.createStatement();
+		canuto.executeUpdate(sentencia);
+		canuto.close();
+	}
+	public String getNombre(String Usuario) throws SQLException {
+		String sentencia = "SELECT `"+campoNombre+"` FROM `clientes` WHERE `"+campoUsuario+"` = \""+Usuario+"\";";
+		Statement canuto = Conector.createStatement();
+		ResultSet resultado = canuto.executeQuery(sentencia);
+		resultado.next();
+		String valorDevolver=resultado.getString(campoNombre);
+		resultado.close();
+		canuto.close();
+		return valorDevolver;
+	}
+	public void setApellido(String Usuario, String Apellido) throws SQLException {
+		String sentencia = "UPDATE `clientes` SET `"+campoApellido+"`=\""+Apellido+"\" WHERE `"+campoUsuario+"`= \""+Usuario+"\";";
+		Statement canuto = Conector.createStatement();
+		canuto.executeUpdate(sentencia);
+		canuto.close();
+	}
+	public String getApellido(String Usuario) throws SQLException {
+		String sentencia = "SELECT `"+campoApellido+"` FROM `clientes` WHERE `"+campoUsuario+"` = \""+Usuario+"\";";
+		Statement canuto = Conector.createStatement();
+		ResultSet resultado = canuto.executeQuery(sentencia);
+		resultado.next();
+		String valorDevolver=resultado.getString(campoApellido);
+		resultado.close();
+		canuto.close();
+		return valorDevolver;
+	}
+	public void setNtarjeta(String Usuario, String Ntarjeta) throws SQLException {
+		String sentencia = "UPDATE `clientes` SET `"+campoNtarjeta+"`=\""+Ntarjeta+"\" WHERE `"+campoUsuario+"`= \""+Usuario+"\";";
+		Statement canuto = Conector.createStatement();
+		canuto.executeUpdate(sentencia);
+		canuto.close();
+	}
+	public String getNtargeta(String Usuario) throws SQLException {
+		String sentencia = "SELECT `"+campoNtarjeta+"` FROM `clientes` WHERE `"+campoUsuario+"` = \""+Usuario+"\";";
+		Statement canuto = Conector.createStatement();
+		ResultSet resultado = canuto.executeQuery(sentencia);
+		resultado.next();
+		String valorDevolver=resultado.getString(campoNtarjeta);
+		resultado.close();
+		canuto.close();
+		return valorDevolver;
+	}
+	public void setDirecion(String Usuario, String Direcion) throws SQLException {
+		String sentencia = "UPDATE `clientes` SET `"+campoDirecion+"`=\""+Direcion+"\" WHERE `"+campoUsuario+"`= \""+Usuario+"\";";
+		Statement canuto = Conector.createStatement();
+		canuto.executeUpdate(sentencia);
+		canuto.close();
+	}
+	public String getDirecion(String Usuario) throws SQLException {
+		String sentencia = "SELECT `"+campoDirecion+"` FROM `clientes` WHERE `"+campoUsuario+"` = \""+Usuario+"\";";
+		Statement canuto = Conector.createStatement();
+		ResultSet resultado = canuto.executeQuery(sentencia);
+		resultado.next();
+		String valorDevolver=resultado.getString(campoDirecion);
 		resultado.close();
 		canuto.close();
 		return valorDevolver;
