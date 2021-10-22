@@ -3,8 +3,8 @@ create database inversiones;
 use inversiones;
 
 create table clientes(
-	primary key usuario varchar(30),
-	contraseña varchar(30) not null,
+	usuario varchar(30) primary key,
+	contraseÃ±a varchar(30) not null,
 	nombre varchar(20),
 	apellidos varchar(30),
 	ntarjeta varchar(30),
@@ -15,18 +15,20 @@ create table clientes(
 	saldo integer,
 	valor_accion integer,
 	foreign key(valor_accion) references accion(valor_compra)
-		on delete cascade on update cascade
+		on delete cascade
+		on update cascade
 );
 
 create table empresas(
 	primary key nombre varchar(30),
 	valor_accion integer,
 	foreign key(valor_accion) references accion(valor_actual)
-		on delete cascade on update cascade
+		on delete cascade
+		on update cascade
 );
 
 create table accion(
-	primary key valor_compra integer,
+	valor_compra integer primary key,
 	valor_actual integer not null,
 	fecha_compra date,
 	fecha_venta date
