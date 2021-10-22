@@ -12,11 +12,7 @@ create table clientes(
 	correo varchar(30),
 	telefono varchar(30),
 	fechanac date,
-	saldo integer,
-	valor_accion integer,
-	foreign key(valor_accion) references accion(valor_compra)
-		on delete cascade
-		on update cascade
+	saldo integer
 );
 
 create table empresas(
