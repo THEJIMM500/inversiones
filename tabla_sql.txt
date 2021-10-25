@@ -12,20 +12,27 @@ create table clientes(
 	correo varchar(30),
 	telefono varchar(30),
 	fechanac date,
-	saldo integer
+	saldo double
 );
 
 create table empresas(
-	primary key nombre varchar(30),
-	valor_accion integer,
-	foreign key(valor_accion) references accion(valor_actual)
-		on delete cascade
-		on update cascade
+	nombre varchar(30) primary key,
+	valor_accion double
 );
 
-create table accion(
-	valor_compra integer primary key,
-	valor_actual integer not null,
-	fecha_compra date,
-	fecha_venta date
+create table accionesCompradas(
+	nombreEmpresa varchar(30) primary key,
+	usuario varchar(30) primary key,
+	numero_acciones integer not null
+);
+
+create table historial(
+	usuario varchar(30) primary key,
+	nombreEmpresa varchar(30) primary key,
+	valor_compra double not null,
+	tipo_transaccion enum('compra','venta') not null,
+	fecha_transaccion date,
+	foreign key(usuario) references clientes(usuario)
+		on delete cascade
+		on update cascade
 );
