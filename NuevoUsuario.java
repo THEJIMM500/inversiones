@@ -1,6 +1,8 @@
 package inversiones;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -48,68 +50,49 @@ public class NuevoUsuario {
 		ventanaRegistro.setTitle("Registro");
 		ventanaRegistro.setBounds(100, 100, 450, 300);
 		ventanaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventanaRegistro.getContentPane().setLayout(null);
 		
 		JLabel lblUsuario = new JLabel("Nombre de usuario");
+		lblUsuario.setBounds(72, 56, 92, 14);
+		ventanaRegistro.getContentPane().add(lblUsuario);
 		
 		textUsuario = new JTextField();
+		textUsuario.setBounds(72, 76, 283, 20);
 		textUsuario.setColumns(10);
+		ventanaRegistro.getContentPane().add(textUsuario);
 		
 		JLabel lblContrasena = new JLabel("Contrase\u00F1a");
+		lblContrasena.setBounds(72, 114, 56, 14);
+		ventanaRegistro.getContentPane().add(lblContrasena);
 		
 		textContrasena = new JTextField();
+		textContrasena.setBounds(72, 134, 283, 20);
 		textContrasena.setColumns(10);
+		ventanaRegistro.getContentPane().add(textContrasena);
 		
 		JLabel lblConfirmar = new JLabel("Confirma contrase\u00F1a");
+		lblConfirmar.setBounds(72, 172, 102, 14);
+		ventanaRegistro.getContentPane().add(lblConfirmar);
 		
 		textConfirmar = new JTextField();
+		textConfirmar.setBounds(72, 192, 283, 20);
 		textConfirmar.setColumns(10);
+		ventanaRegistro.getContentPane().add(textConfirmar);
 		
 		JButton btnCrearCuenta = new JButton("Crear cuenta");
+		btnCrearCuenta.setBounds(162, 223, 95, 23);
+		ventanaRegistro.getContentPane().add(btnCrearCuenta);
 		
 		JButton btnRetroceder = new JButton("Retroceder");
-		GroupLayout groupLayout = new GroupLayout(ventanaRegistro.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(72)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(lblConfirmar)
-								.addComponent(lblContrasena)
-								.addComponent(lblUsuario)
-								.addComponent(textUsuario, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-								.addComponent(textContrasena)
-								.addComponent(textConfirmar)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(162)
-							.addComponent(btnCrearCuenta))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnRetroceder)))
-					.addContainerGap(79, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnRetroceder)
-					.addGap(22)
-					.addComponent(lblUsuario)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblContrasena)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textContrasena, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblConfirmar)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textConfirmar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnCrearCuenta)
-					.addContainerGap(15, Short.MAX_VALUE))
-		);
-		ventanaRegistro.getContentPane().setLayout(groupLayout);
+		btnRetroceder.setBounds(10, 11, 87, 23);
+		ventanaRegistro.getContentPane().add(btnRetroceder);
+		btnRetroceder.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        InicioSesion inicio = new InicioSesion();
+		        inicio.main(null);
+		        ventanaRegistro.setVisible(false);
+			}
+		});
 	}
 }
