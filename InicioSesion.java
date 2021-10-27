@@ -1,20 +1,10 @@
 package inversiones;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SwingConstants;
-import java.awt.Window.Type;
-import javax.swing.BoxLayout;
-import javax.swing.JPasswordField;
+import javax.swing.*;
 import java.awt.Component;
 
 public class InicioSesion {
@@ -32,7 +22,7 @@ public class InicioSesion {
 				try {
 					InicioSesion window = new InicioSesion();
 					window.ventanaInicioSesion.setVisible(true);
-					window.ventanaInicioSesion.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					//window.ventanaInicioSesion.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,6 +35,8 @@ public class InicioSesion {
 	 */
 	public InicioSesion() {
 		initialize();
+		ventanaInicioSesion.setVisible(true);
+		
 	}
 
 	/**
@@ -53,6 +45,8 @@ public class InicioSesion {
 	private void initialize() {
 		ventanaInicioSesion = new JFrame();
 		ventanaInicioSesion.setTitle("Iniciar sesi\u00F3n");
+		ventanaInicioSesion.setBounds(100, 100, 740, 430);
+		ventanaInicioSesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventanaInicioSesion.getContentPane().setLayout(null);
 		
 		JLabel lblTitulo = new JLabel("ESCOLAPInversions");
@@ -82,11 +76,28 @@ public class InicioSesion {
 		JButton btnInicio = new JButton("Iniciar sesi\u00F3n");
 		btnInicio.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnInicio.setBounds(86, 183, 120, 25);
-		ventanaInicioSesion.getContentPane().add(btnInicio);
+		ventanaInicioSesion.getContentPane().add(btnInicio);		
+		btnInicio.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        Principal principal = new Principal();
+		        principal.main(null);
+		        ventanaInicioSesion.setVisible(false);
+			}
+		});
 		
 		JButton btnRegistro = new JButton("Registrarse");
 		btnRegistro.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnRegistro.setBounds(224, 183, 120, 25);
 		ventanaInicioSesion.getContentPane().add(btnRegistro);
+		btnRegistro.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        NuevoUsuario registro = new NuevoUsuario();
+		        registro.main(null);
+		        ventanaInicioSesion.setVisible(false);
+			}
+		});
 	}
+	
 }
