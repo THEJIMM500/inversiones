@@ -1,6 +1,8 @@
 package inversiones;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -57,126 +59,87 @@ public class DatosPersonales {
 		ventanaDatosPersonales.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblNtarjeta = new JLabel(" N\u00BA de tarjeta");
+		lblNtarjeta.setBounds(72, 172, 100, 14);
 		
 		JLabel lblApellidos = new JLabel("Apellidos");
+		lblApellidos.setBounds(72, 114, 56, 14);
 		
 		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(72, 56, 90, 14);
 		
 		textNombre = new JTextField();
+		textNombre.setBounds(72, 76, 283, 20);
 		textNombre.setColumns(10);
 		
 		textApellidos = new JTextField();
+		textApellidos.setBounds(72, 134, 283, 20);
 		textApellidos.setColumns(10);
 		
 		textNtarjeta = new JTextField();
+		textNtarjeta.setBounds(72, 192, 283, 20);
 		textNtarjeta.setColumns(10);
 		
 		JButton btnRetroceder = new JButton("Retroceder");
-		
+		btnRetroceder.setBounds(10, 11, 87, 23);
+		btnRetroceder.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        Principal principal = new Principal();
+		        principal.main(null);
+		        ventanaDatosPersonales.setVisible(false);
+			}
+		});
 		textTelefono = new JTextField();
+		textTelefono.setBounds(72, 366, 283, 20);
 		textTelefono.setColumns(10);
 		
 		JLabel lblTelefono = new JLabel("Tel\u00E9fono");
+		lblTelefono.setBounds(72, 346, 100, 14);
 		
 		textCorreo = new JTextField();
+		textCorreo.setBounds(72, 308, 283, 20);
 		textCorreo.setColumns(10);
 		
 		JLabel lblCorreo = new JLabel("Correo");
+		lblCorreo.setBounds(72, 288, 56, 14);
 		
 		textDireccion = new JTextField();
+		textDireccion.setBounds(72, 250, 283, 20);
 		textDireccion.setColumns(10);
 		
 		JLabel lblDireccion = new JLabel("Direcci\u00F3n");
+		lblDireccion.setBounds(72, 230, 90, 14);
 		
 		lblFechaNac = new JLabel("Fecha de nacimiento");
+		lblFechaNac.setBounds(72, 404, 101, 14);
 		
 		textFechaNac = new JTextField();
+		textFechaNac.setBounds(72, 424, 283, 20);
 		textFechaNac.setColumns(10);
 		
 		btnCambiarContrasena = new JButton("Cambiar contrase\u00F1a");
+		btnCambiarContrasena.setBounds(167, 462, 131, 23);
 		
 		btnModificar = new JButton("Modificar campos");
-		GroupLayout groupLayout = new GroupLayout(ventanaDatosPersonales.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnRetroceder, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(62)
-									.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(62)
-									.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(62)
-									.addComponent(lblApellidos, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(62)
-									.addComponent(textApellidos, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(62)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(lblDireccion, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textDireccion, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-										.addComponent(lblNtarjeta, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textNtarjeta, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-										.addComponent(lblCorreo, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textCorreo, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-										.addComponent(lblTelefono, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textTelefono, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-										.addComponent(lblFechaNac)
-										.addComponent(textFechaNac)))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(167)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnModificar)
-								.addComponent(btnCambiarContrasena))))
-					.addContainerGap(79, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnRetroceder)
-					.addGap(22)
-					.addComponent(lblNombre)
-					.addGap(6)
-					.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblApellidos)
-					.addGap(6)
-					.addComponent(textApellidos, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblNtarjeta)
-					.addGap(6)
-					.addComponent(textNtarjeta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblDireccion)
-					.addGap(6)
-					.addComponent(textDireccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblCorreo)
-					.addGap(6)
-					.addComponent(textCorreo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblTelefono)
-					.addGap(6)
-					.addComponent(textTelefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblFechaNac)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textFechaNac, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnCambiarContrasena)
-					.addGap(18)
-					.addComponent(btnModificar)
-					.addContainerGap(15, Short.MAX_VALUE))
-		);
-		ventanaDatosPersonales.getContentPane().setLayout(groupLayout);
+		btnModificar.setBounds(167, 503, 117, 23);
+		ventanaDatosPersonales.getContentPane().setLayout(null);
+		ventanaDatosPersonales.getContentPane().add(btnRetroceder);
+		ventanaDatosPersonales.getContentPane().add(lblNombre);
+		ventanaDatosPersonales.getContentPane().add(textNombre);
+		ventanaDatosPersonales.getContentPane().add(lblApellidos);
+		ventanaDatosPersonales.getContentPane().add(textApellidos);
+		ventanaDatosPersonales.getContentPane().add(lblDireccion);
+		ventanaDatosPersonales.getContentPane().add(textDireccion);
+		ventanaDatosPersonales.getContentPane().add(lblNtarjeta);
+		ventanaDatosPersonales.getContentPane().add(textNtarjeta);
+		ventanaDatosPersonales.getContentPane().add(lblCorreo);
+		ventanaDatosPersonales.getContentPane().add(textCorreo);
+		ventanaDatosPersonales.getContentPane().add(lblTelefono);
+		ventanaDatosPersonales.getContentPane().add(textTelefono);
+		ventanaDatosPersonales.getContentPane().add(lblFechaNac);
+		ventanaDatosPersonales.getContentPane().add(textFechaNac);
+		ventanaDatosPersonales.getContentPane().add(btnModificar);
+		ventanaDatosPersonales.getContentPane().add(btnCambiarContrasena);
 	}
 
 }
