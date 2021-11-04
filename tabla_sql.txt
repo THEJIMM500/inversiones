@@ -17,7 +17,7 @@ create table clientes(
 
 create table empresas(
 	nombre varchar(30) primary key,
-	valor_accion double
+	valor_accion double default 0
 );
 
 create table accionesCompradas(
