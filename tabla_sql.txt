@@ -21,18 +21,27 @@ create table empresas(
 );
 
 create table accionesCompradas(
-	nombreEmpresa varchar(30) primary key,
+	nombre_empresa varchar(30) primary key,
 	usuario varchar(30) primary key,
-	numero_acciones integer not null
+	numero_acciones integer not null,
+	foreign key(usuario) references clientes(usuario)
+		on delete cascade
+		on update cascade,
+	foreign key(nombre_empresa) references empresas(nombre)
+		on delete cascade
+		on update cascade
 );
 
 create table historial(
 	usuario varchar(30) primary key,
-	nombreEmpresa varchar(30) primary key,
+	nombre_empresa varchar(30) primary key,
 	valor_compra double not null,
 	tipo_transaccion enum('compra','venta') not null,
 	fecha_transaccion date,
 	foreign key(usuario) references clientes(usuario)
+		on delete cascade
+		on update cascade,
+	foreign key(nombre_empresa) references empresas(nombre)
 		on delete cascade
 		on update cascade
 );
