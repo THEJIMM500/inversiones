@@ -3,22 +3,17 @@ package inversiones;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.*;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class Vender {
 
 	private JFrame ventanaVender;
-	private JTextField textCantidad;
-	private JTextField textValor;
-	private JButton btnCompletar;
-	private JButton btnCancelar;
+	private JTextField textCantidad, textValor;
+	private JButton btnCompletar, btnCancelar;
+	private JLabel lblCantidad;
+	private JCheckBox chckbxValor;
 
 	/**
 	 * Launch the application.
@@ -48,12 +43,16 @@ public class Vender {
 	 */
 	private void initialize() {
 		ventanaVender = new JFrame();
+		ventanaVender.getContentPane().setBackground(Color.WHITE);
 		ventanaVender.setTitle("Vender");
 		ventanaVender.setBounds(100, 100, 450, 300);
 		ventanaVender.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventanaVender.getContentPane().setLayout(null);
 		
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 11, 89, 23);
+		btnCancelar = new JButton("");
+		btnCancelar.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Cancelar.png"));
+		btnCancelar.setBackground(Color.WHITE);
+		btnCancelar.setBounds(10, 11, 110, 23);
 		ventanaVender.getContentPane().add(btnCancelar);
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
@@ -64,28 +63,30 @@ public class Vender {
 			}
 		});
 		
-		JLabel lblCantidad = new JLabel("Cantidad");
-		lblCantidad.setBounds(120, 74, 43, 14);
+		lblCantidad = new JLabel("Cantidad");
+		lblCantidad.setBounds(120, 74, 60, 14);
+		ventanaVender.getContentPane().add(lblCantidad);
 		
 		textCantidad = new JTextField();
 		textCantidad.setBounds(187, 71, 86, 20);
 		textCantidad.setColumns(10);
+		ventanaVender.getContentPane().add(textCantidad);
 		
 		textValor = new JTextField();
 		textValor.setBounds(187, 109, 86, 20);
 		textValor.setColumns(10);
-		
-		btnCompletar = new JButton("Completar");
-		btnCompletar.setBounds(154, 177, 81, 23);
-		
-		JCheckBox chckbxValor = new JCheckBox("Valor");
-		chckbxValor.setBounds(120, 106, 49, 23);
-		ventanaVender.getContentPane().setLayout(null);
-		ventanaVender.getContentPane().add(lblCantidad);
-		ventanaVender.getContentPane().add(chckbxValor);
 		ventanaVender.getContentPane().add(textValor);
-		ventanaVender.getContentPane().add(textCantidad);
+		
+		btnCompletar = new JButton("");
+		btnCompletar.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Completar.png"));
+		btnCompletar.setBackground(Color.WHITE);
+		btnCompletar.setBounds(154, 177, 127, 42);
 		ventanaVender.getContentPane().add(btnCompletar);
+		
+		chckbxValor = new JCheckBox("Valor");
+		chckbxValor.setBackground(Color.WHITE);
+		chckbxValor.setBounds(120, 106, 60, 23);
+		ventanaVender.getContentPane().add(chckbxValor);
 		
 	}
 }
