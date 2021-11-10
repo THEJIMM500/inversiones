@@ -4,10 +4,15 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.awt.Color;
 
 public class Movimientos {
 
 	private JFrame ventanaMovimientos;
+	private JLabel lblEmpresa;
+	private JTextPane textPaneGanancias;
+	private JButton btnRetroceder;
+	private JList listHistorial;
 
 	/**
 	 * Launch the application.
@@ -37,18 +42,16 @@ public class Movimientos {
 	 */
 	private void initialize() {
 		ventanaMovimientos = new JFrame();
-		ventanaMovimientos.setTitle("Movimientos");
-		ventanaMovimientos.setBounds(100, 100, 450, 300);
-		ventanaMovimientos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addVentana();
 		
-		JLabel lblEmpresa = new JLabel("Empresa");
-		lblEmpresa.setBounds(113, 52, 41, 14);
+		lblEmpresa = new JLabel("Empresa");
+		addLblEmpresa();
 		
-		JTextPane textPaneGanancias = new JTextPane();
-		textPaneGanancias.setBounds(220, 52, 124, 20);
+		textPaneGanancias = new JTextPane();
+		addTextPaneGanancias();
 		
-		JButton btnRetroceder = new JButton("Retroceder");
-		btnRetroceder.setBounds(10, 11, 87, 23);
+		btnRetroceder = new JButton("");
+		addBtnRetroceder();
 		btnRetroceder.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -58,12 +61,37 @@ public class Movimientos {
 			}
 		});
 		
-		JList listHistorial = new JList();
-		listHistorial.setBounds(65, 125, 279, 108);
+		listHistorial = new JList();
+		addListHistorial();
+		
+	}
+
+	public void addVentana() {
+		ventanaMovimientos.getContentPane().setBackground(Color.WHITE);
+		ventanaMovimientos.setTitle("Movimientos");
+		ventanaMovimientos.setBounds(100, 100, 450, 300);
+		ventanaMovimientos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventanaMovimientos.getContentPane().setLayout(null);
-		ventanaMovimientos.getContentPane().add(btnRetroceder);
+	}
+
+	public void addListHistorial() {
+		listHistorial.setBounds(65, 125, 279, 108);
 		ventanaMovimientos.getContentPane().add(listHistorial);
-		ventanaMovimientos.getContentPane().add(lblEmpresa);
+	}
+
+	public void addBtnRetroceder() {
+		btnRetroceder.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Retroceder.png"));
+		btnRetroceder.setBounds(10, 11, 136, 33);
+		ventanaMovimientos.getContentPane().add(btnRetroceder);
+	}
+
+	public void addTextPaneGanancias() {
+		textPaneGanancias.setBounds(220, 52, 124, 20);
 		ventanaMovimientos.getContentPane().add(textPaneGanancias);
+	}
+
+	public void addLblEmpresa() {
+		lblEmpresa.setBounds(113, 52, 41, 14);
+		ventanaMovimientos.getContentPane().add(lblEmpresa);
 	}
 }
