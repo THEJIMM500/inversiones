@@ -4,20 +4,14 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.awt.Color;
 
 public class DatosPersonales {
 
 	private JFrame ventanaDatosPersonales;
-	private JTextField textNombre;
-	private JTextField textApellidos;
-	private JTextField textNtarjeta;
-	private JTextField textTelefono;
-	private JTextField textCorreo;
-	private JTextField textDireccion;
-	private JLabel lblFechaNac;
-	private JTextField textFechaNac;
-	private JButton btnCambiarContrasena;
-	private JButton btnModificar;
+	private JLabel lblNombre, lblApellidos, lblNtarjeta, lblTelefono, lblCorreo, lblDireccion, lblFechaNac;
+	private JTextField textNombre, textApellidos, textNtarjeta, textTelefono, textCorreo, textDireccion, textFechaNac;
+	private JButton btnCambiarContrasena, btnModificar, btnRetroceder;
 
 	/**
 	 * Launch the application.
@@ -47,33 +41,52 @@ public class DatosPersonales {
 	 */
 	private void initialize() {
 		ventanaDatosPersonales = new JFrame();
-		ventanaDatosPersonales.setTitle("Datos personales");
-		ventanaDatosPersonales.setBounds(100, 100, 450, 580);
-		ventanaDatosPersonales.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addVentana();		
 		
-		JLabel lblNtarjeta = new JLabel(" N\u00BA de tarjeta");
-		lblNtarjeta.setBounds(72, 172, 100, 14);
+		lblNombre = new JLabel("Nombre");
+		addLblNombre();
 		
-		JLabel lblApellidos = new JLabel("Apellidos");
-		lblApellidos.setBounds(72, 114, 56, 14);
+		lblApellidos = new JLabel("Apellidos");
+		addLblApellidos();
 		
-		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(72, 56, 90, 14);
+		lblNtarjeta = new JLabel("N\u00BA de tarjeta");
+		addLblNtarjeta();
+		
+		lblTelefono = new JLabel("Tel\u00E9fono");
+		addLblTelefono();
+		
+		lblCorreo = new JLabel("Correo");
+		addLblCorreo();
+		
+		lblDireccion = new JLabel("Direcci\u00F3n");
+		addLblDireccion();
+		
+		lblFechaNac = new JLabel("Fecha de nacimiento");
+		addLblFechaNac();
 		
 		textNombre = new JTextField();
-		textNombre.setBounds(72, 76, 283, 20);
-		textNombre.setColumns(10);
+		addTextNombre();
 		
 		textApellidos = new JTextField();
-		textApellidos.setBounds(72, 134, 283, 20);
-		textApellidos.setColumns(10);
+		addTextApellidos();
 		
 		textNtarjeta = new JTextField();
-		textNtarjeta.setBounds(72, 192, 283, 20);
-		textNtarjeta.setColumns(10);
+		addTextNtarjeta();
 		
-		JButton btnRetroceder = new JButton("Retroceder");
-		btnRetroceder.setBounds(10, 11, 87, 23);
+		textTelefono = new JTextField();
+		addTextTelefono();
+		
+		textCorreo = new JTextField();
+		addTextCorreo();
+		
+		textDireccion = new JTextField();
+		addTextDireccion();
+		
+		textFechaNac = new JTextField();
+		addTextFechaNac();
+		
+		btnRetroceder = new JButton("");
+		addBtnRetroceder();
 		btnRetroceder.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -83,57 +96,118 @@ public class DatosPersonales {
 			}
 		});
 		
-		textTelefono = new JTextField();
-		textTelefono.setBounds(72, 366, 283, 20);
-		textTelefono.setColumns(10);
+		btnCambiarContrasena = new JButton("");
+		addBtnCambiarContrasena();
 		
-		JLabel lblTelefono = new JLabel("Tel\u00E9fono");
-		lblTelefono.setBounds(72, 346, 100, 14);
+		btnModificar = new JButton("");
+		addBtnModificar();
 		
-		textCorreo = new JTextField();
-		textCorreo.setBounds(72, 308, 283, 20);
-		textCorreo.setColumns(10);
-		
-		JLabel lblCorreo = new JLabel("Correo");
-		lblCorreo.setBounds(72, 288, 56, 14);
-		
-		textDireccion = new JTextField();
-		textDireccion.setBounds(72, 250, 283, 20);
-		textDireccion.setColumns(10);
-		
-		JLabel lblDireccion = new JLabel("Direcci\u00F3n");
-		lblDireccion.setBounds(72, 230, 90, 14);
-		
-		lblFechaNac = new JLabel("Fecha de nacimiento");
-		lblFechaNac.setBounds(72, 404, 101, 14);
-		
-		textFechaNac = new JTextField();
+	}
+
+	public void addVentana() {
+		ventanaDatosPersonales.getContentPane().setBackground(Color.WHITE);
+		ventanaDatosPersonales.setTitle("Datos personales");
+		ventanaDatosPersonales.setBounds(100, 100, 450, 635);
+		ventanaDatosPersonales.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventanaDatosPersonales.getContentPane().setLayout(null);
+	}
+
+	public void addBtnModificar() {
+		btnModificar.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Modificar campos.png"));
+		btnModificar.setBackground(Color.WHITE);
+		btnModificar.setBounds(122, 524, 190, 44);
+		ventanaDatosPersonales.getContentPane().add(btnModificar);
+	}
+
+	public void addBtnCambiarContrasena() {
+		btnCambiarContrasena.setBackground(Color.WHITE);
+		btnCambiarContrasena.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Cambiar contrase\u00F1a.png"));
+		btnCambiarContrasena.setBounds(112, 469, 210, 44);
+		ventanaDatosPersonales.getContentPane().add(btnCambiarContrasena);
+	}
+
+	public void addBtnRetroceder() {
+		btnRetroceder.setBackground(Color.WHITE);
+		btnRetroceder.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Retroceder.png"));
+		btnRetroceder.setBounds(10, 11, 136, 33);
+		ventanaDatosPersonales.getContentPane().add(btnRetroceder);
+	}
+
+	public void addTextFechaNac() {
 		textFechaNac.setBounds(72, 424, 283, 20);
 		textFechaNac.setColumns(10);
-		
-		btnCambiarContrasena = new JButton("Cambiar contrase\u00F1a");
-		btnCambiarContrasena.setBounds(167, 462, 131, 23);
-		
-		btnModificar = new JButton("Modificar campos");
-		btnModificar.setBounds(167, 503, 117, 23);
-		ventanaDatosPersonales.getContentPane().setLayout(null);
-		ventanaDatosPersonales.getContentPane().add(btnRetroceder);
-		ventanaDatosPersonales.getContentPane().add(lblNombre);
-		ventanaDatosPersonales.getContentPane().add(textNombre);
-		ventanaDatosPersonales.getContentPane().add(lblApellidos);
-		ventanaDatosPersonales.getContentPane().add(textApellidos);
-		ventanaDatosPersonales.getContentPane().add(lblDireccion);
-		ventanaDatosPersonales.getContentPane().add(textDireccion);
-		ventanaDatosPersonales.getContentPane().add(lblNtarjeta);
-		ventanaDatosPersonales.getContentPane().add(textNtarjeta);
-		ventanaDatosPersonales.getContentPane().add(lblCorreo);
-		ventanaDatosPersonales.getContentPane().add(textCorreo);
-		ventanaDatosPersonales.getContentPane().add(lblTelefono);
-		ventanaDatosPersonales.getContentPane().add(textTelefono);
-		ventanaDatosPersonales.getContentPane().add(lblFechaNac);
 		ventanaDatosPersonales.getContentPane().add(textFechaNac);
-		ventanaDatosPersonales.getContentPane().add(btnModificar);
-		ventanaDatosPersonales.getContentPane().add(btnCambiarContrasena);
+	}
+
+	public void addTextDireccion() {
+		textDireccion.setBounds(72, 250, 283, 20);
+		textDireccion.setColumns(10);
+		ventanaDatosPersonales.getContentPane().add(textDireccion);
+	}
+
+	public void addTextCorreo() {
+		textCorreo.setBounds(72, 308, 283, 20);
+		textCorreo.setColumns(10);
+		ventanaDatosPersonales.getContentPane().add(textCorreo);
+	}
+
+	public void addTextTelefono() {
+		textTelefono.setBounds(72, 366, 283, 20);
+		textTelefono.setColumns(10);
+		ventanaDatosPersonales.getContentPane().add(textTelefono);
+	}
+
+	public void addTextNtarjeta() {
+		textNtarjeta.setBounds(72, 192, 283, 20);
+		textNtarjeta.setColumns(10);
+		ventanaDatosPersonales.getContentPane().add(textNtarjeta);
+	}
+
+	public void addTextApellidos() {
+		textApellidos.setBounds(72, 134, 283, 20);
+		textApellidos.setColumns(10);
+		ventanaDatosPersonales.getContentPane().add(textApellidos);
+	}
+
+	public void addTextNombre() {
+		textNombre.setBounds(72, 76, 283, 20);
+		textNombre.setColumns(10);
+		ventanaDatosPersonales.getContentPane().add(textNombre);
+	}
+
+	public void addLblFechaNac() {
+		lblFechaNac.setBounds(72, 404, 101, 14);
+		ventanaDatosPersonales.getContentPane().add(lblFechaNac);
+	}
+
+	public void addLblDireccion() {
+		lblDireccion.setBounds(72, 230, 90, 14);
+		ventanaDatosPersonales.getContentPane().add(lblDireccion);
+	}
+
+	public void addLblCorreo() {
+		lblCorreo.setBounds(72, 288, 56, 14);
+		ventanaDatosPersonales.getContentPane().add(lblCorreo);
+	}
+
+	public void addLblTelefono() {
+		lblTelefono.setBounds(72, 346, 100, 14);
+		ventanaDatosPersonales.getContentPane().add(lblTelefono);
+	}
+
+	public void addLblNtarjeta() {
+		lblNtarjeta.setBounds(72, 172, 100, 14);
+		ventanaDatosPersonales.getContentPane().add(lblNtarjeta);
+	}
+
+	public void addLblApellidos() {
+		lblApellidos.setBounds(72, 114, 56, 14);
+		ventanaDatosPersonales.getContentPane().add(lblApellidos);
+	}
+
+	public void addLblNombre() {
+		lblNombre.setBounds(72, 56, 90, 14);
+		ventanaDatosPersonales.getContentPane().add(lblNombre);
 	}
 
 }
