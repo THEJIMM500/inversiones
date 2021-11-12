@@ -10,9 +10,11 @@ public class Principal {
 
 	private JFrame ventanaPrincipal;
 	private JLabel lblUsuario;
-	private JButton btnVender, btnComprar, btnDatosPersonales, btnMovimientos, btnSaldo, btnCerrarSesion;
-	private JPanel panelOpciones;
+	private JButton btnVender, btnComprar;
 	private JPanel panel_1;
+	private JMenuBar menuBar;
+	private JMenu menuOpciones;
+	private JMenuItem btnDatosPersonales, btnMovimientos, btnSaldo, btnCerrarSesion;
 	private String nombreGuardado;
 
 	/**
@@ -22,7 +24,7 @@ public class Principal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal window = new Principal(nombreGuardado);
+					Principal window = new Principal(null);
 					window.ventanaPrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,10 +73,20 @@ public class Principal {
 			}
 		});		
 		
-		panelOpciones = new JPanel();
-		addPanelOpciones();
+		panel_1 = new JPanel();
+		panel_1.setBounds(195, 70, 327, 268);
+		ventanaPrincipal.getContentPane().add(panel_1);
 		
-		btnDatosPersonales = new JButton("");
+		menuBar = new JMenuBar();
+		menuBar.setBackground(Color.WHITE);
+		menuBar.setBounds(10, 36, 70, 60);
+		ventanaPrincipal.getContentPane().add(menuBar);
+		
+		menuOpciones = new JMenu("");
+		menuOpciones.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_user.png"));
+		menuBar.add(menuOpciones);
+		
+		btnDatosPersonales = new JMenuItem("Datos personales");
 		addBtnDatosPersonales();
 		btnDatosPersonales.addActionListener(new ActionListener() {
 			@Override
@@ -85,7 +97,7 @@ public class Principal {
 			}
 		});
 		
-		btnMovimientos = new JButton("");
+		btnMovimientos = new JMenuItem("Movimientos");
 		addBtnMovimientos();
 		btnMovimientos.addActionListener(new ActionListener() {
 			@Override
@@ -96,7 +108,7 @@ public class Principal {
 			}
 		});
 		
-		btnSaldo = new JButton("");
+		btnSaldo = new JMenuItem("Saldo");
 		addBtnSaldo();
 		btnSaldo.addActionListener(new ActionListener() {
 			@Override
@@ -107,7 +119,7 @@ public class Principal {
 			}
 		});
 		
-		btnCerrarSesion = new JButton("");
+		btnCerrarSesion = new JMenuItem("Cerrar sesión");
 		addBtnCerrarSesion();
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			@Override
@@ -117,11 +129,31 @@ public class Principal {
 		        ventanaPrincipal.setVisible(false);
 			}
 		});
-		
-		panel_1 = new JPanel();
-		panel_1.setBounds(195, 70, 327, 268);
-		ventanaPrincipal.getContentPane().add(panel_1);
 
+	}
+
+	private void addBtnCerrarSesion() {
+		btnCerrarSesion.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_sign-out.png"));
+		btnCerrarSesion.setBackground(Color.WHITE);
+		menuOpciones.add(btnCerrarSesion);
+	}
+
+	private void addBtnSaldo() {
+		btnSaldo.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_credit-card.png"));
+		btnSaldo.setBackground(Color.WHITE);
+		menuOpciones.add(btnSaldo);
+	}
+
+	private void addBtnMovimientos() {
+		btnMovimientos.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_exchange.png"));
+		btnMovimientos.setBackground(Color.WHITE);
+		menuOpciones.add(btnMovimientos);
+	}
+
+	private void addBtnDatosPersonales() {
+		btnDatosPersonales.setBackground(Color.WHITE);
+		btnDatosPersonales.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_book.png"));
+		menuOpciones.add(btnDatosPersonales);
 	}
 
 	public void addVentana() {
@@ -132,51 +164,23 @@ public class Principal {
 		ventanaPrincipal.getContentPane().setLayout(null);
 	}
 
-	public void addBtnCerrarSesion() {
-		btnCerrarSesion.setBackground(Color.WHITE);
-		btnCerrarSesion.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_sign-out.png"));
-		panelOpciones.add(btnCerrarSesion);
-	}
-
-	public void addBtnSaldo() {
-		btnSaldo.setBackground(Color.WHITE);
-		btnSaldo.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_credit-card.png"));
-		panelOpciones.add(btnSaldo);
-	}
-
-	public void addBtnMovimientos() {
-		btnMovimientos.setBackground(Color.WHITE);
-		btnMovimientos.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_exchange.png"));
-		panelOpciones.add(btnMovimientos);
-	}
-
-	public void addBtnDatosPersonales() {
-		btnDatosPersonales.setBackground(Color.WHITE);
-		btnDatosPersonales.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_book.png"));
-		panelOpciones.add(btnDatosPersonales);
-	}
-
-	public void addPanelOpciones() {
-		panelOpciones.setBackground(Color.WHITE);
-		panelOpciones.setBounds(10, 70, 100, 310);
-		ventanaPrincipal.getContentPane().add(panelOpciones);
-	}
-
 	public void addBtnComprar() {
 		btnComprar.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Comprar.png"));
 		btnComprar.setBackground(Color.WHITE);
 		btnComprar.setBounds(549, 113, 142, 47);
+		btnComprar.setBorder(null);
 		ventanaPrincipal.getContentPane().add(btnComprar);
 	}
 
 	public void addBtnVender() {
 		btnVender.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Vender.png"));
 		btnVender.setBounds(549, 232, 142, 46);
+		btnVender.setBorder(null);
 		ventanaPrincipal.getContentPane().add(btnVender);
 	}
 
 	public void addLblUsuario() {
-		lblUsuario.setBounds(10, 11, 46, 14);
+		lblUsuario.setBounds(10, 11, 60, 14);
 		ventanaPrincipal.getContentPane().add(lblUsuario);
 	}
 }

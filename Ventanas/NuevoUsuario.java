@@ -21,7 +21,7 @@ public class NuevoUsuario {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NuevoUsuario window = new NuevoUsuario(nombreGuardado);
+					NuevoUsuario window = new NuevoUsuario(null);
 					window.ventanaRegistro.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
