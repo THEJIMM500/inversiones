@@ -11,7 +11,7 @@ public class DatosPersonales {
 	private JFrame ventanaDatosPersonales;
 	private JLabel lblNombre, lblApellidos, lblNtarjeta, lblTelefono, lblCorreo, lblDireccion, lblFechaNac;
 	private JTextArea textNombre, textApellidos, textNtarjeta, textTelefono, textCorreo, textDireccion, textFechaNac;
-	private JButton btnCambiarContrasena, btnModificar, btnRetroceder;
+	private JButton btnModificar, btnRetroceder;
 	private String nombreGuardado;
 
 	/**
@@ -95,18 +95,7 @@ public class DatosPersonales {
 		        principal.main(null);
 		        ventanaDatosPersonales.setVisible(false);
 			}
-		});
-		
-		btnCambiarContrasena = new JButton("");
-		addBtnCambiarContrasena();
-		btnCambiarContrasena.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-		        CambiarContrasena cambiarContrasena = new CambiarContrasena(nombreGuardado);
-		        cambiarContrasena.main(null);
-		        ventanaDatosPersonales.setVisible(false);
-			}
-		});
+		});		
 		
 		btnModificar = new JButton("");
 		addBtnModificar();
@@ -124,30 +113,22 @@ public class DatosPersonales {
 	public void addVentana() {
 		ventanaDatosPersonales.getContentPane().setBackground(Color.WHITE);
 		ventanaDatosPersonales.setTitle("Datos personales");
-		ventanaDatosPersonales.setBounds(100, 100, 450, 635);
+		ventanaDatosPersonales.setBounds(100, 100, 450, 600);
 		ventanaDatosPersonales.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventanaDatosPersonales.getContentPane().setLayout(null);
 	}
 
 	public void addBtnModificar() {
-		btnModificar.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Modificar campos.png"));
+		btnModificar.setIcon(new ImageIcon("Modificar campos.png"));
 		btnModificar.setBackground(Color.WHITE);
-		btnModificar.setBounds(122, 524, 190, 44);
+		btnModificar.setBounds(120, 485, 190, 44);
 		btnModificar.setBorder(null);
 		ventanaDatosPersonales.getContentPane().add(btnModificar);
 	}
 
-	public void addBtnCambiarContrasena() {
-		btnCambiarContrasena.setBackground(Color.WHITE);
-		btnCambiarContrasena.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Cambiar contrase\u00F1a.png"));
-		btnCambiarContrasena.setBounds(112, 469, 210, 44);
-		btnCambiarContrasena.setBorder(null);
-		ventanaDatosPersonales.getContentPane().add(btnCambiarContrasena);
-	}
-
 	public void addBtnRetroceder() {
 		btnRetroceder.setBackground(Color.WHITE);
-		btnRetroceder.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Retroceder.png"));
+		btnRetroceder.setIcon(new ImageIcon("Retroceder.png"));
 		btnRetroceder.setBounds(10, 11, 136, 33);
 		btnRetroceder.setBorder(null);
 		ventanaDatosPersonales.getContentPane().add(btnRetroceder);
