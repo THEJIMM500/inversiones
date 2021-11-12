@@ -33,8 +33,9 @@ create table accionesCompradas(
 );
 
 create table historial(
-	usuario varchar(30) primary key,
-	nombre_empresa varchar(30) primary key,
+	id integer primary key,
+	usuario varchar(30),
+	nombre_empresa varchar(30),
 	valor_compra double not null,
 	tipo_transaccion enum('compra','venta') not null,
 	fecha_transaccion date,
