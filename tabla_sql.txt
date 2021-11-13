@@ -4,7 +4,7 @@ use inversiones;
 
 create table clientes(
 	usuario varchar(30) primary key,
-	contraseña varchar(30) not null,
+	contrasena varchar(30) not null,
 	nombre varchar(20),
 	apellidos varchar(30),
 	ntarjeta varchar(30),
