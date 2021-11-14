@@ -15,6 +15,27 @@ public class ConexionAcciones {
 		String url = "jdbc:mysql://localhost:3306/inversiones";
 		Conector = DriverManager.getConnection(url, user, password);
 	}
+	
+	public boolean insertOperacion(String empresa, String usuario, String acciones) throws SQLException {
+		int numero_acciones = Integer.parseInt(acciones);
+		if (numero_acciones > 0) {
+			String sentencia = "INSERT INTO accionesCompradas (nombre_empresa, usuario, numero_acciones) values ('"+empresa+"', '"+usuario+"', '"+acciones+"');";
+			Statement canuto = Conector.createStatement();
+			canuto.executeUpdate(sentencia);
+			canuto.close();
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean deleteOperacion(String empresa, String usuario) throws SQLException {
+			String sentencia = "DELETE FROM accionesCompradas WHERE nombre_empresa = '"+empresa+"' AND usuario = '"+usuario+"';";
+			Statement canuto = Conector.createStatement();
+			canuto.executeUpdate(sentencia);
+			canuto.close();
+			return true;
+	}
 
 	public String getNombreEmpresa(String empresa) throws SQLException {
 		String sentencia = "SELECT `"+campoNombreEmpresa+"` FROM `accionesCompradas` WHERE `"+campoNombreEmpresa+"` = \""+empresa+"\";";
@@ -57,3 +78,4 @@ public class ConexionAcciones {
 	}
 	
 }
+
