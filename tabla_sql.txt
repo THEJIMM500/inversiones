@@ -11,7 +11,7 @@ create table clientes(
 	direccion varchar(30),
 	correo varchar(30),
 	telefono varchar(30),
-	fechanac date,
+	fechanac varchar(30),
 	saldo double
 );
 
