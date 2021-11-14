@@ -13,7 +13,6 @@ public class ConexionHistorial {
 	private final String campoValorCompra = "valor_compra";
 	private final String campoTipoTransaccion = "tipo_transaccion";
 	private final String campoFechaTransaccion = "fecha_transaccion";
-	private int ID = 1;
 	
 	public ConexionHistorial() throws SQLException {
 		String user = "root";
@@ -22,22 +21,23 @@ public class ConexionHistorial {
 		Conector = DriverManager.getConnection(url, user, password);
 	}
 	
-	public String insertaTransaccion(String usuario, String empresa, String valor, String tipo) throws SQLException {
-
+	public boolean insertaTransaccion(int ID, String usuario, String empresa, String valor, String tipo) throws SQLException {
+		//El campo ID tiene que ser un campo único para cada entrada
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        String fecha = dtf.format(now);
-		
-		String sentencia = "INSERT INTO historial (id, usuario, nombre_empresa, valor_compra, tipo_transaccion, fecha_transaccion)"
-				+ "values ('"+ID+"', '"+usuario+"', '"+empresa+"', '"+valor+"', '"+tipo+"', '"+fecha+"');";
-		Statement canuto = Conector.createStatement();
-		ResultSet resultado = canuto.executeQuery(sentencia);
-		resultado.next();
-		String valorDevolver = resultado.getString(campoValorCompra);
-		resultado.close();
-		canuto.close();
-		ID++;
-		return valorDevolver;
+		LocalDateTime now = LocalDateTime.now();
+		String fecha = dtf.format(now);
+		String numeroID = String.valueOf(ID);
+        
+		int valor_compra = Integer.parseInt(valor);
+		if (valor_compra > 0) {
+			String sentencia = "INSERT INTO historial (id, usuario, nombre_empresa, valor_compra, tipo_transaccion, fecha_transaccion) values ('"+numeroID+"', '"+usuario+"', '"+empresa+"', '"+valor+"', '"+tipo+"', '"+fecha+"');";
+			Statement canuto = Conector.createStatement();
+			canuto.executeUpdate(sentencia);
+			canuto.close();
+			return true;
+		}
+        
+		return false;
 	}
 	
 	public String getID(String usuario) throws SQLException {
@@ -83,5 +83,5 @@ public class ConexionHistorial {
 		canuto.close();
 		return valorDevolver;
 	}
-
+	
 }
