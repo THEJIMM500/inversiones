@@ -12,7 +12,7 @@ create table clientes(
 	correo varchar(30),
 	telefono varchar(30),
 	fechanac varchar(30),
-	saldo double
+	saldo double default 0
 );
 
 create table empresas(
