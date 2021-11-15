@@ -3,19 +3,25 @@ package inversiones;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.*;
+
+import com.mysql.jdbc.Connection;
+
 import java.awt.Color;
-import javax.swing.ImageIcon;
 
 
 public class Comprar {
-
+	
+	private ConexionAcciones conexion;
+	private ConexionHistorial historial;
 	private JFrame ventanaComprar;
 	private JTextField textCantidad, textValor;
 	private JButton btnCompletar, btnCancelar;
 	private JLabel lblCantidad;
-	private JCheckBox chckbxValor;
-	private String nombreGuardado;
+	private JCheckBox checkValor;
+	private String nombreGuardado, empresaSeleccionada;
 
 	/**
 	 * Launch the application.
@@ -24,7 +30,7 @@ public class Comprar {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Comprar window = new Comprar();
+					Comprar window = new Comprar(null, null);
 					window.ventanaComprar.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +42,9 @@ public class Comprar {
 	/**
 	 * Create the application.
 	 */
-	public Comprar() {
+	public Comprar(String nombreGuardado, String empresaSeleccionada) {
+		this.nombreGuardado = nombreGuardado;
+		this.empresaSeleccionada = empresaSeleccionada;
 		initialize();
 	}
 
@@ -67,11 +75,98 @@ public class Comprar {
 		textValor = new JTextField();
 		addTextValor();
 		
+		checkValor = new JCheckBox("Valor");
+		addChckValor(checkValor);
+		if (checkValor.isSelected()) {
+			
+		}
+		
 		btnCompletar = new JButton("");
 		addBtnCompletar();
-		
-		chckbxValor = new JCheckBox("Valor");
-		addChckValor(chckbxValor);
+		btnCompletar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int cantidad = Integer.parseInt(textCantidad.getText());
+				if(cantidad > 0) {
+					if (empresaSeleccionada.equals("amazon")) {
+						try {
+							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
+							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("apple")) {
+						try {
+							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
+							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("facebook")) {
+						try {
+							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
+							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("google")) {
+						try {
+							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
+							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("linkedin")) {
+						try {
+							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
+							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("twitch")) {
+						try {
+							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
+							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("microsoft")) {
+						try {
+							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
+							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("git")) {
+						try {
+							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
+							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("paypal")) {
+						try {
+							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
+							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					}
+					
+				} else {
+					JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad de dinero válida", "Error", 2, null);
+				}
+			}
+		});
 		
 	}
 
@@ -120,3 +215,4 @@ public class Comprar {
 		ventanaComprar.getContentPane().add(btnCancelar);
 	}
 }
+
