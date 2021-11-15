@@ -41,8 +41,8 @@ public class Principal {
 	 * Create the application.
 	 */
 	public Principal(String nombreGuardado) {
+		this.nombreGuardado = nombreGuardado;		
 		initialize();
-		this.nombreGuardado = nombreGuardado;
 	}
 
 	/**
