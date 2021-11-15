@@ -3,6 +3,7 @@ package inversiones;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class ConexionHistorial {
 	
@@ -40,48 +41,34 @@ public class ConexionHistorial {
 		return false;
 	}
 	
-	public String getID(String usuario) throws SQLException {
+	public ArrayList<Integer> getIds(String usuario) throws SQLException {
+		ArrayList<Integer> listaIds = new ArrayList<Integer>();
 		String sentencia = "SELECT `"+campoID+"` FROM `historial` WHERE `"+campoUsuario+"` = \""+usuario+"\";";
 		Statement canuto = Conector.createStatement();
 		ResultSet resultado = canuto.executeQuery(sentencia);
-		resultado.next();
-		String valorDevolver = resultado.getString(campoValorCompra);
+		while(resultado.next()) {
+			int ID = resultado.getInt(campoID);
+			listaIds.add(ID);
+		}
 		resultado.close();
 		canuto.close();
-		return valorDevolver;
+		return listaIds;
 	}
 	
-	public String getValorCompra(String usuario) throws SQLException {
-		String sentencia = "SELECT `"+campoValorCompra+"` FROM `historial` WHERE `"+campoUsuario+"` = \""+usuario+"\";";
+	public historialCompra getHistorial(int ID) throws SQLException {
+		String sentencia = "SELECT `"+campoID+"`,`"+campoUsuario+"`,`"+campoNombreEmpresa+"`,`"+campoValorCompra+"`,`"+campoTipoTransaccion+"`,`"+campoFechaTransaccion+"` FROM `historial` WHERE `"+campoID+"` = "+ID+";";
 		Statement canuto = Conector.createStatement();
 		ResultSet resultado = canuto.executeQuery(sentencia);
 		resultado.next();
-		String valorDevolver = resultado.getString(campoValorCompra);
+		String usuario= resultado.getString(campoUsuario);
+		String empresa= resultado.getString(campoNombreEmpresa);
+		double valorDevolver = resultado.getDouble(campoValorCompra);
+		String tipoTransicion = resultado.getString(campoTipoTransaccion);
+		String FechaTransicion = resultado.getString(campoFechaTransaccion);
 		resultado.close();
 		canuto.close();
-		return valorDevolver;
-	}
-	
-	public String getTipoTransaccion(String usuario) throws SQLException {
-		String sentencia = "SELECT `"+campoTipoTransaccion+"` FROM `historial` WHERE `"+campoUsuario+"` = \""+usuario+"\";";
-		Statement canuto = Conector.createStatement();
-		ResultSet resultado = canuto.executeQuery(sentencia);
-		resultado.next();
-		String valorDevolver = resultado.getString(campoTipoTransaccion);
-		resultado.close();
-		canuto.close();
-		return valorDevolver;
-	}
-	
-	public String getFechaTransaccion(String usuario) throws SQLException {
-		String sentencia = "SELECT `"+campoFechaTransaccion+"` FROM `historial` WHERE `"+campoUsuario+"` = \""+usuario+"\";";
-		Statement canuto = Conector.createStatement();
-		ResultSet resultado = canuto.executeQuery(sentencia);
-		resultado.next();
-		String valorDevolver = resultado.getString(campoFechaTransaccion);
-		resultado.close();
-		canuto.close();
-		return valorDevolver;
+		
+		return new historialCompra(ID, empresa,usuario, tipoTransicion, FechaTransicion, valorDevolver);
 	}
 	
 }
