@@ -16,9 +16,8 @@ public class ConexionAcciones {
 		Conector = DriverManager.getConnection(url, user, password);
 	}
 	
-	public boolean insertOperacion(String empresa, String usuario, String acciones) throws SQLException {
-		int numero_acciones = Integer.parseInt(acciones);
-		if (numero_acciones > 0) {
+	public boolean insertOperacion(String empresa, String usuario, int acciones) throws SQLException {
+		if (acciones > 0) {
 			String sentencia = "INSERT INTO accionesCompradas (nombre_empresa, usuario, numero_acciones) values ('"+empresa+"', '"+usuario+"', '"+acciones+"');";
 			Statement canuto = Conector.createStatement();
 			canuto.executeUpdate(sentencia);
@@ -29,9 +28,8 @@ public class ConexionAcciones {
 		}
 	}
 	
-	public boolean updateOperacion(String empresa, String usuario, String acciones) throws SQLException {
-		int numero_acciones = Integer.parseInt(acciones);
-		if (numero_acciones > 0) {
+	public boolean updateOperacion(String empresa, String usuario, int acciones) throws SQLException {
+		if (acciones > 0) {
 			String sentencia = "UPDATE accionesCompradas set numero_acciones = '"+acciones+"' WHERE usuario = '"+usuario+"' AND nombre_empresa = '"+empresa+"' ;";
 			Statement canuto = Conector.createStatement();
 			canuto.executeUpdate(sentencia);
@@ -72,12 +70,12 @@ public class ConexionAcciones {
 		return valorDevolver;
 	}
 
-	public String getNumeroAcciones(String valor) throws SQLException {
-		String sentencia = "SELECT `"+campoNumeroAcciones+"` FROM `accionesCompradas` WHERE `"+campoNumeroAcciones+"` = \""+valor+"\";";
+	public int getNumeroAcciones(String empresa, String usuario) throws SQLException {
+		String sentencia = "SELECT `"+campoNumeroAcciones+"` FROM `accionesCompradas` WHERE `"+campoNombreEmpresa+"`=\""+empresa+"\" AND `"+campoUsuario+"`=\""+usuario+"\";";
 		Statement canuto = Conector.createStatement();
 		ResultSet resultado = canuto.executeQuery(sentencia);
 		resultado.next();
-		String valorDevolver = resultado.getString(campoNumeroAcciones);
+		int valorDevolver = resultado.getInt(campoNumeroAcciones);
 		resultado.close();
 		canuto.close();
 		return valorDevolver;
