@@ -29,6 +29,19 @@ public class ConexionAcciones {
 		}
 	}
 	
+	public boolean updateOperacion(String empresa, String usuario, String acciones) throws SQLException {
+		int numero_acciones = Integer.parseInt(acciones);
+		if (numero_acciones > 0) {
+			String sentencia = "UPDATE accionesCompradas set numero_acciones = '"+acciones+"' WHERE usuario = '"+usuario+"' AND nombre_empresa = '"+empresa+"' ;";
+			Statement canuto = Conector.createStatement();
+			canuto.executeUpdate(sentencia);
+			canuto.close();
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public boolean deleteOperacion(String empresa, String usuario) throws SQLException {
 			String sentencia = "DELETE FROM accionesCompradas WHERE nombre_empresa = '"+empresa+"' AND usuario = '"+usuario+"';";
 			Statement canuto = Conector.createStatement();
@@ -78,4 +91,3 @@ public class ConexionAcciones {
 	}
 	
 }
-
