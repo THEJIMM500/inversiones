@@ -16,6 +16,8 @@ public class Comprar {
 	
 	private ConexionAcciones conexion;
 	private ConexionHistorial historial;
+	private ConexionUsuarios cartera;
+	private ConexionEmpresas valor;
 	private JFrame ventanaComprar;
 	private JTextField textCantidad, textValor;
 	private JButton btnCompletar, btnCancelar;
@@ -90,72 +92,63 @@ public class Comprar {
 				if(cantidad > 0) {
 					if (empresaSeleccionada.equals("amazon")) {
 						try {
-							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
-							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+							operacionesDeCompra(cantidad);
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
 						
 					} else if (empresaSeleccionada.equals("apple")) {
 						try {
-							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
-							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+							operacionesDeCompra(cantidad);
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
 						
 					} else if (empresaSeleccionada.equals("facebook")) {
 						try {
-							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
-							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+							operacionesDeCompra(cantidad);
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
 						
 					} else if (empresaSeleccionada.equals("google")) {
 						try {
-							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
-							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+							operacionesDeCompra(cantidad);
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
 						
 					} else if (empresaSeleccionada.equals("linkedin")) {
 						try {
-							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
-							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+							operacionesDeCompra(cantidad);
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
 						
 					} else if (empresaSeleccionada.equals("twitch")) {
 						try {
-							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
-							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+							operacionesDeCompra(cantidad);
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
 						
 					} else if (empresaSeleccionada.equals("microsoft")) {
 						try {
-							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
-							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+							operacionesDeCompra(cantidad);
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
 						
 					} else if (empresaSeleccionada.equals("git")) {
 						try {
-							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
-							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+							operacionesDeCompra(cantidad);
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
 						
 					} else if (empresaSeleccionada.equals("paypal")) {
 						try {
-							conexion.insertOperacion(empresaSeleccionada, nombreGuardado, textCantidad.getText());
-							historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+							operacionesDeCompra(cantidad);
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
@@ -163,11 +156,25 @@ public class Comprar {
 					}
 					
 				} else {
-					JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad de dinero válida", "Error", 2, null);
+					JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad de acciones válida", "Error", 2, null);
 				}
 			}
 		});
 		
+	}
+	
+	public void operacionesDeCompra(int acciones) throws SQLException {
+		conexion.insertOperacion(empresaSeleccionada, nombreGuardado, accionesTotales(acciones));
+		historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "compra");
+		cartera.setSaldo(nombreGuardado, dineroGastado(acciones));
+	}
+	
+	public double dineroGastado(int acciones) throws SQLException {
+		return cartera.getSaldo(nombreGuardado) - (valor.getValorAccion(empresaSeleccionada) * acciones);
+	}
+	
+	public int accionesTotales(int acciones) throws SQLException {
+		return acciones - conexion.getNumeroAcciones(empresaSeleccionada, nombreGuardado);
 	}
 
 	public void addVentana() {
@@ -215,4 +222,3 @@ public class Comprar {
 		ventanaComprar.getContentPane().add(btnCancelar);
 	}
 }
-
