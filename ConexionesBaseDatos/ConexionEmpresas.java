@@ -26,12 +26,12 @@ public class ConexionEmpresas {
 		return valorDevolver;
 	}
 
-	public String getValorAccion(String valor) throws SQLException {
-		String sentencia = "SELECT `"+campoValorAccion+"` FROM `empresas` WHERE `"+campoValorAccion+"` = \""+valor+"\";";
+	public double getValorAccion(String empresa) throws SQLException {
+		String sentencia = "SELECT `"+campoValorAccion+"` FROM `empresas` WHERE `"+campoNombre+"` = \""+empresa+"\";";
 		Statement canuto = Conector.createStatement();
 		ResultSet resultado = canuto.executeQuery(sentencia);
 		resultado.next();
-		String valorDevolver = resultado.getString(campoValorAccion);
+		Double valorDevolver = resultado.getDouble(campoValorAccion);
 		resultado.close();
 		canuto.close();
 		return valorDevolver;
