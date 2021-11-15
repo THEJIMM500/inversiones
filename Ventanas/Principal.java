@@ -1,21 +1,25 @@
 package inversiones;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import java.awt.Color;
+
+import java.awt.*;
 
 public class Principal {
 
 	private JFrame ventanaPrincipal;
 	private JLabel lblUsuario;
 	private JButton btnVender, btnComprar;
-	private JPanel panel_1;
 	private JMenuBar menuBar;
 	private JMenu menuOpciones;
 	private JMenuItem btnDatosPersonales, btnMovimientos, btnSaldo, btnCerrarSesion;
-	private String nombreGuardado;
+	private JScrollPane scrollPane;
+	private JPanel panelEmpresas;
+	private GridBagLayout gbl_panel;
+	private JButton btnAmazon, btnApple, btnFacebook, btnGoogle, btnLinkedin, btnTwitch, btnMicrosoft, btnGit, btnPaypal;
+	private GridBagConstraints gbc_btnAmazon, gbc_btnApple, gbc_btnFacebook, gbc_btnGoogle, gbc_btnLinkedin, gbc_btnTwitch, gbc_btnMicrosoft, gbc_btnGit, gbc_btnPaypal;
+	private String nombreGuardado, empresaSeleccionada = "ninguna";
 
 	/**
 	 * Launch the application.
@@ -56,9 +60,13 @@ public class Principal {
 		btnVender.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		        Vender vender = new Vender();
-		        vender.main(null);
-		        ventanaPrincipal.setVisible(false);
+				if (empresaSeleccionada.equals("ninguna")) {
+					JOptionPane.showMessageDialog(btnVender, "Selecciona una empresa", "Error", 0, null);
+				} else {
+			        Vender vender = new Vender(nombreGuardado, empresaSeleccionada);
+			        vender.main(null);
+			        ventanaPrincipal.setVisible(false);
+				}
 			}
 		});
 		
@@ -67,24 +75,21 @@ public class Principal {
 		btnComprar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		        Comprar comprar = new Comprar();
-		        comprar.main(null);
-		        ventanaPrincipal.setVisible(false);
+				if (empresaSeleccionada.equals("ninguna")) {
+					JOptionPane.showMessageDialog(btnVender, "Selecciona una empresa", "Error", 0, null);
+				} else {
+			        Comprar comprar = new Comprar(nombreGuardado, empresaSeleccionada);
+			        comprar.main(null);
+			        ventanaPrincipal.setVisible(false);
+				}
 			}
-		});		
-		
-		panel_1 = new JPanel();
-		panel_1.setBounds(195, 70, 327, 268);
-		ventanaPrincipal.getContentPane().add(panel_1);
+		});
 		
 		menuBar = new JMenuBar();
-		menuBar.setBackground(Color.WHITE);
-		menuBar.setBounds(10, 36, 70, 60);
-		ventanaPrincipal.getContentPane().add(menuBar);
 		
 		menuOpciones = new JMenu("");
-		menuOpciones.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_user.png"));
-		menuBar.add(menuOpciones);
+		
+		addMenuBar();
 		
 		btnDatosPersonales = new JMenuItem("Datos personales");
 		addBtnDatosPersonales();
@@ -119,7 +124,7 @@ public class Principal {
 			}
 		});
 		
-		btnCerrarSesion = new JMenuItem("Cerrar sesión");
+		btnCerrarSesion = new JMenuItem("Cerrar sesiÃ³n");
 		addBtnCerrarSesion();
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			@Override
@@ -129,30 +134,244 @@ public class Principal {
 		        ventanaPrincipal.setVisible(false);
 			}
 		});
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(159, 65, 230, 250);
+		ventanaPrincipal.getContentPane().add(scrollPane);
+		
+		panelEmpresas = new JPanel();
+		panelEmpresas.setBackground(Color.WHITE);
+		addPanelEmpresas();
+		
+		btnAmazon = new JButton("");
+		addBtnAmazon();
+		btnAmazon.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        Empresa empresa = new Empresa("amazon");
+				empresaSeleccionada = String.valueOf(empresa.getNombreEmpresa());
+			}
+		});
+		
+		btnApple = new JButton("");
+		addBtnApple();
+		btnApple.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        Empresa empresa = new Empresa("apple");
+				empresaSeleccionada = String.valueOf(empresa.getNombreEmpresa());
+			}
+		});
+		
+		btnFacebook = new JButton("");
+		addBtnFacebook();
+		btnFacebook.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        Empresa empresa = new Empresa("facebook");
+				empresaSeleccionada = String.valueOf(empresa.getNombreEmpresa());
+			}
+		});
+		
+		btnGoogle = new JButton("");
+		addBtnGoogle();
+		btnGoogle.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        Empresa empresa = new Empresa("google");
+				empresaSeleccionada = String.valueOf(empresa.getNombreEmpresa());
+			}
+		});
+		
+		btnLinkedin = new JButton("");
+		addBtnLinkedin();
+		btnLinkedin.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        Empresa empresa = new Empresa("linkedin");
+				empresaSeleccionada = String.valueOf(empresa.getNombreEmpresa());
+			}
+		});
+		
+		btnTwitch = new JButton("");
+		addBtnTwitch();
+		btnTwitch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        Empresa empresa = new Empresa("twitch");
+				empresaSeleccionada = String.valueOf(empresa.getNombreEmpresa());
+			}
+		});
+		
+		btnMicrosoft = new JButton("");
+		addBtnMicrosoft();
+		btnMicrosoft.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        Empresa empresa = new Empresa("microsoft");
+				empresaSeleccionada = String.valueOf(empresa.getNombreEmpresa());
+			}
+		});
+		
+		btnGit = new JButton("");
+		addBtnGit();
+		btnGit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        Empresa empresa = new Empresa("git");
+				empresaSeleccionada = String.valueOf(empresa.getNombreEmpresa());
+			}
+		});
+		
+		btnPaypal = new JButton("");
+		addBtnPaypal();
+		btnPaypal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        Empresa empresa = new Empresa("paypal");
+				empresaSeleccionada = String.valueOf(empresa.getNombreEmpresa());
+			}
+		});
+		
+	}
 
+	private void addMenuBar() {
+		menuBar.setBackground(Color.WHITE);
+		menuBar.setBounds(10, 36, 70, 60);
+		ventanaPrincipal.getContentPane().add(menuBar);
+		menuOpciones.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_user.png"));
+		menuBar.add(menuOpciones);
+	}
+
+	private void addBtnPaypal() {
+		btnPaypal.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_paypal.png"));
+		btnPaypal.setPreferredSize(new Dimension(70, 70));
+		btnPaypal.setBackground(Color.WHITE);
+		gbc_btnPaypal = new GridBagConstraints();
+		gbc_btnPaypal.gridx = 2;
+		gbc_btnPaypal.gridy = 2;
+		panelEmpresas.add(btnPaypal, gbc_btnPaypal);
+	}
+
+	private void addBtnGit() {
+		btnGit.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_git.png"));
+		btnGit.setPreferredSize(new Dimension(70, 70));
+		btnGit.setBackground(Color.WHITE);
+		gbc_btnGit = new GridBagConstraints();
+		gbc_btnGit.insets = new Insets(0, 0, 0, 5);
+		gbc_btnGit.gridx = 1;
+		gbc_btnGit.gridy = 2;
+		panelEmpresas.add(btnGit, gbc_btnGit);
+	}
+
+	private void addBtnMicrosoft() {
+		btnMicrosoft.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_windows.png"));
+		btnMicrosoft.setPreferredSize(new Dimension(70, 70));
+		btnMicrosoft.setBackground(Color.WHITE);
+		gbc_btnMicrosoft = new GridBagConstraints();
+		gbc_btnMicrosoft.insets = new Insets(0, 0, 0, 5);
+		gbc_btnMicrosoft.gridx = 0;
+		gbc_btnMicrosoft.gridy = 2;
+		panelEmpresas.add(btnMicrosoft, gbc_btnMicrosoft);
+	}
+
+	private void addBtnTwitch() {
+		btnTwitch.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_twitch.png"));
+		btnTwitch.setPreferredSize(new Dimension(70, 70));
+		btnTwitch.setBackground(Color.WHITE);
+		gbc_btnTwitch = new GridBagConstraints();
+		gbc_btnTwitch.insets = new Insets(0, 0, 5, 0);
+		gbc_btnTwitch.gridx = 2;
+		gbc_btnTwitch.gridy = 1;
+		panelEmpresas.add(btnTwitch, gbc_btnTwitch);
+	}
+
+	private void addBtnLinkedin() {
+		btnLinkedin.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_linkedin-square.png"));
+		btnLinkedin.setPreferredSize(new Dimension(70, 70));
+		btnLinkedin.setBackground(Color.WHITE);
+		gbc_btnLinkedin = new GridBagConstraints();
+		gbc_btnLinkedin.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLinkedin.gridx = 1;
+		gbc_btnLinkedin.gridy = 1;
+		panelEmpresas.add(btnLinkedin, gbc_btnLinkedin);
+	}
+
+	private void addBtnGoogle() {
+		btnGoogle.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_google.png"));
+		btnGoogle.setPreferredSize(new Dimension(70, 70));
+		btnGoogle.setBackground(Color.WHITE);
+		gbc_btnGoogle = new GridBagConstraints();
+		gbc_btnGoogle.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGoogle.gridx = 0;
+		gbc_btnGoogle.gridy = 1;
+		panelEmpresas.add(btnGoogle, gbc_btnGoogle);
+	}
+
+	private void addBtnFacebook() {
+		btnFacebook.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_facebook-official.png"));
+		btnFacebook.setPreferredSize(new Dimension(70, 70));
+		btnFacebook.setBackground(Color.WHITE);
+		gbc_btnFacebook = new GridBagConstraints();
+		gbc_btnFacebook.insets = new Insets(0, 0, 5, 0);
+		gbc_btnFacebook.gridx = 2;
+		gbc_btnFacebook.gridy = 0;
+		panelEmpresas.add(btnFacebook, gbc_btnFacebook);
+	}
+
+	private void addBtnApple() {
+		btnApple.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_apple.png"));
+		btnApple.setPreferredSize(new Dimension(70, 70));
+		btnApple.setBackground(Color.WHITE);
+		gbc_btnApple = new GridBagConstraints();
+		gbc_btnApple.insets = new Insets(0, 0, 5, 5);
+		gbc_btnApple.gridx = 1;
+		gbc_btnApple.gridy = 0;
+		panelEmpresas.add(btnApple, gbc_btnApple);
+	}
+
+	private void addBtnAmazon() {
+		btnAmazon.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_amazon.png"));
+		btnAmazon.setPreferredSize(new Dimension(70, 70));
+		btnAmazon.setBackground(Color.WHITE);
+		gbc_btnAmazon = new GridBagConstraints();
+		gbc_btnAmazon.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAmazon.gridx = 0;
+		gbc_btnAmazon.gridy = 0;
+		panelEmpresas.add(btnAmazon, gbc_btnAmazon);
+	}
+
+	private void addPanelEmpresas() {
+		scrollPane.setViewportView(panelEmpresas);
+		gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panelEmpresas.setLayout(gbl_panel);
 	}
 
 	private void addBtnCerrarSesion() {
-		btnCerrarSesion.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_sign-out.png"));
+		btnCerrarSesion.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_sign-out.png"));
 		btnCerrarSesion.setBackground(Color.WHITE);
 		menuOpciones.add(btnCerrarSesion);
 	}
 
 	private void addBtnSaldo() {
-		btnSaldo.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_credit-card.png"));
+		btnSaldo.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_credit-card.png"));
 		btnSaldo.setBackground(Color.WHITE);
 		menuOpciones.add(btnSaldo);
 	}
 
 	private void addBtnMovimientos() {
-		btnMovimientos.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_exchange.png"));
+		btnMovimientos.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_exchange.png"));
 		btnMovimientos.setBackground(Color.WHITE);
 		menuOpciones.add(btnMovimientos);
 	}
 
 	private void addBtnDatosPersonales() {
 		btnDatosPersonales.setBackground(Color.WHITE);
-		btnDatosPersonales.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\icon_book.png"));
+		btnDatosPersonales.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\icon_book.png"));
 		menuOpciones.add(btnDatosPersonales);
 	}
 
@@ -165,7 +384,7 @@ public class Principal {
 	}
 
 	public void addBtnComprar() {
-		btnComprar.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Comprar.png"));
+		btnComprar.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\Comprar.png"));
 		btnComprar.setBackground(Color.WHITE);
 		btnComprar.setBounds(549, 113, 142, 47);
 		btnComprar.setBorder(null);
@@ -173,7 +392,8 @@ public class Principal {
 	}
 
 	public void addBtnVender() {
-		btnVender.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Downloads\\Vender.png"));
+		btnVender.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\Vender.png"));
+		btnVender.setBackground(Color.WHITE);
 		btnVender.setBounds(549, 232, 142, 46);
 		btnVender.setBorder(null);
 		ventanaPrincipal.getContentPane().add(btnVender);
