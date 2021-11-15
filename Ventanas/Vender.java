@@ -12,6 +12,8 @@ public class Vender {
 	
 	private ConexionAcciones conexion;
 	private ConexionHistorial historial;
+	private ConexionUsuarios cartera;
+	private ConexionEmpresas valor;
 	private JFrame ventanaVender;
 	private JTextField textCantidad, textValor;
 	private JButton btnCompletar, btnCancelar;
@@ -79,84 +81,94 @@ public class Vender {
 		btnCompletar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if (empresaSeleccionada.equals("amazon")) {
-					try {
-						conexion.deleteOperacion(empresaSeleccionada, nombreGuardado);
-						historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "venta");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
+				int cantidad = Integer.parseInt(textCantidad.getText());
+				if(cantidad > 0) {
+					if (empresaSeleccionada.equals("amazon")) {
+						try {
+							operacionesDeVenta(cantidad);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("apple")) {
+						try {
+							operacionesDeVenta(cantidad);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("facebook")) {
+						try {
+							operacionesDeVenta(cantidad);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("google")) {
+						try {
+							operacionesDeVenta(cantidad);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("linkedin")) {
+						try {
+							operacionesDeVenta(cantidad);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("twitch")) {
+						try {
+							operacionesDeVenta(cantidad);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("microsoft")) {
+						try {
+							operacionesDeVenta(cantidad);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("git")) {
+						try {
+							operacionesDeVenta(cantidad);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
+					} else if (empresaSeleccionada.equals("paypal")) {
+						try {
+							operacionesDeVenta(cantidad);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						
 					}
 					
-				} else if (empresaSeleccionada.equals("apple")) {
-					try {
-						conexion.deleteOperacion(empresaSeleccionada, nombreGuardado);
-						historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "venta");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
-				} else if (empresaSeleccionada.equals("facebook")) {
-					try {
-						conexion.deleteOperacion(empresaSeleccionada, nombreGuardado);
-						historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "venta");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
-				} else if (empresaSeleccionada.equals("google")) {
-					try {
-						conexion.deleteOperacion(empresaSeleccionada, nombreGuardado);
-						historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "venta");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
-				} else if (empresaSeleccionada.equals("linkedin")) {
-					try {
-						conexion.deleteOperacion(empresaSeleccionada, nombreGuardado);
-						historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "venta");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
-				} else if (empresaSeleccionada.equals("twitch")) {
-					try {
-						conexion.deleteOperacion(empresaSeleccionada, nombreGuardado);
-						historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "venta");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
-				} else if (empresaSeleccionada.equals("microsoft")) {
-					try {
-						conexion.deleteOperacion(empresaSeleccionada, nombreGuardado);
-						historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "venta");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
-				} else if (empresaSeleccionada.equals("git")) {
-					try {
-						conexion.deleteOperacion(empresaSeleccionada, nombreGuardado);
-						historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "venta");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
-				} else if (empresaSeleccionada.equals("paypal")) {
-					try {
-						conexion.deleteOperacion(empresaSeleccionada, nombreGuardado);
-						historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "venta");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
+				} else {
+					JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad de acciones válida", "Error", 2, null);
 				}
 				
 			}
 		});
 		
+	}
+	
+	public void operacionesDeVenta(int acciones) throws SQLException {
+		conexion.updateOperacion(empresaSeleccionada, nombreGuardado, accionesTotales(acciones));
+		historial.insertaTransaccion(ID, nombreGuardado, empresaSeleccionada, textCantidad.getText(), "venta");
+		cartera.setSaldo(nombreGuardado, dineroGanado(acciones));
+	}
+	
+	public double dineroGanado(int acciones) throws SQLException{
+		return (cartera.getSaldo(nombreGuardado)) + valor.getValorAccion(empresaSeleccionada) * acciones;
+	}
+	
+	public int accionesTotales(int acciones) throws SQLException {
+		return conexion.getNumeroAcciones(empresaSeleccionada, nombreGuardado) - acciones;
 	}
 
 	private void addVentana() {
