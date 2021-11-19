@@ -83,6 +83,11 @@ public class Comprar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				double saldoActual = 0;
+				try {
+					saldoActual = conexionUsuarios.getSaldo(nombreGuardado);
+				} catch (SQLException e2) {
+					e2.printStackTrace();
+				}
 				double valorActual=0;
 				
 				if (checkValor.isSelected()) {
