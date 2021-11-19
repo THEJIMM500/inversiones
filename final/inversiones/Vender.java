@@ -242,7 +242,7 @@ public class Vender {
 								}
 								
 							} else {
-								JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad de v·lida", "Error", 2, null);
+								JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad de v√°lida", "Error", 2, null);
 							}
 					}
 				} else {
@@ -405,7 +405,7 @@ public class Vender {
 						}
 						
 					} else {
-						JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad de v·lida", "Error", 2, null);
+						JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad de v√°lida", "Error", 2, null);
 					}
 				}
 			
