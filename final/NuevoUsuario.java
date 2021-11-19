@@ -6,7 +6,12 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.*;
+
+import tratadoDatos.ComprobarDatos;
+import tratadoDatos.ConexionUsuarios;
+
 import java.awt.Color;
+import java.awt.Font;
 
 public class NuevoUsuario {
 
@@ -15,13 +20,13 @@ public class NuevoUsuario {
 	private JLabel lblUsuario, lblContrasena, lblConfirmar;
 	private JButton btnCrearCuenta, btnRetroceder;
 	public String nombreGuardado;
-	private ConecsionUsuarios conexion;
+	private ConexionUsuarios conexion;
 
 	
 	public NuevoUsuario(String nombreGuardado) {
 		initialize();
 		try {
-			conexion= new ConecsionUsuarios();
+			conexion= new ConexionUsuarios();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,6 +44,7 @@ public class NuevoUsuario {
 		ventanaRegistro.setVisible(true);
 		
 		lblUsuario = new JLabel("Nombre de usuario");
+		lblUsuario.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblUsuario();
 		//addLabel(lblUsuario, 72, 56, 92, 14);
 		
@@ -46,12 +52,14 @@ public class NuevoUsuario {
 		addTextUsuario();
 		
 		lblContrasena = new JLabel("Contrase\u00F1a");
+		lblContrasena.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblContrasena();
 		
 		textContrasena = new JTextField();
 		addTextContrasena();
 		
 		lblConfirmar = new JLabel("Confirma contrase\u00F1a");
+		lblConfirmar.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblConfirmar();
 		
 		textConfirmar = new JTextField();
@@ -80,16 +88,18 @@ public class NuevoUsuario {
 	}
 
 	public void addBtnRetroceder() {
-		btnRetroceder.setIcon(new ImageIcon(".//recursos/Retroceder.png"));
+		btnRetroceder.setIcon(new ImageIcon("Retroceder.png"));
 		btnRetroceder.setBackground(Color.WHITE);
 		btnRetroceder.setBounds(10, 11, 136, 33);
+		btnRetroceder.setBorder(null);
 		ventanaRegistro.getContentPane().add(btnRetroceder);
 	}
 
 	public void addBtnCrearCuenta() {
-		btnCrearCuenta.setIcon(new ImageIcon(".//recursos/Crear cuenta.png"));
+		btnCrearCuenta.setIcon(new ImageIcon("Crear cuenta.png"));
 		btnCrearCuenta.setBackground(Color.WHITE);
 		btnCrearCuenta.setBounds(141, 229, 152, 45);
+		btnCrearCuenta.setBorder(null);
 		btnCrearCuenta.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -100,8 +110,7 @@ public class NuevoUsuario {
 					if(textContrasena.getText().equals(textConfirmar.getText())==true) {
 				        try {
 							if(conexion.registrarUsuario(textUsuario.getText(),textContrasena.getText())) {
-								JOptionPane.showMessageDialog(btnCrearCuenta, "Usuario creado en brebe sera dirigido a la pantalla "
-										+ "principal", "Operacion existosa", 1, null);
+								JOptionPane.showMessageDialog(btnCrearCuenta, "Usuario creado. Ahora será redirigido a la pantalla de inicio.", "Operacion existosa", 1, null);
 								Thread.sleep(1000);
 								new InicioSesion();
 								ventanaRegistro.setVisible(false);
@@ -114,11 +123,11 @@ public class NuevoUsuario {
 							e1.printStackTrace();
 						}
 					}else {
-						JOptionPane.showMessageDialog(btnCrearCuenta, "Las contraseñas no coinciden", "Error en los valores", 0, null);
+						JOptionPane.showMessageDialog(btnCrearCuenta, "Las contraseñas no coinciden.", "Error en los valores", 0, null);
 					}
 				}else {
 					JOptionPane.showMessageDialog(btnCrearCuenta, "El Usauario o la contraseña son"
-							+ " demasiado grandes asegures que ninguno tnega mas de 30 caracteres", "Error en los valores", 0, null);
+							+ " demasiado extensos. Asegurese de que ninguno supere los 30 caracteres.", "Error en los valores", 0, null);
 				}
 				
 				
@@ -135,7 +144,7 @@ public class NuevoUsuario {
 	}
 
 	public void addLblConfirmar() {
-		lblConfirmar.setBounds(72, 172, 150, 14);
+		lblConfirmar.setBounds(72, 172, 283, 20);
 		ventanaRegistro.getContentPane().add(lblConfirmar);
 	}
 
@@ -146,7 +155,7 @@ public class NuevoUsuario {
 	}
 
 	public void addLblContrasena() {
-		lblContrasena.setBounds(72, 114, 155, 14);
+		lblContrasena.setBounds(72, 114, 283, 20);
 		ventanaRegistro.getContentPane().add(lblContrasena);
 	}
 
@@ -157,7 +166,7 @@ public class NuevoUsuario {
 	}
 
 	public void addLblUsuario() {
-		lblUsuario.setBounds(72, 56, 150, 14);
+		lblUsuario.setBounds(72, 56, 283, 20);
 		ventanaRegistro.getContentPane().add(lblUsuario);
 	}
 	

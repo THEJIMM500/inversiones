@@ -4,8 +4,16 @@ package inversiones;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.*;
+import javax.swing.border.Border;
+
+import tratadoDatos.ConexionUsuarios;
+
 import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.Font;
 
 public class DatosPersonales {
 
@@ -14,11 +22,20 @@ public class DatosPersonales {
 	private JTextArea textNombre, textApellidos, textNtarjeta, textTelefono, textCorreo, textDireccion, textFechaNac;
 	private JButton btnCambiarContrasena, btnModificar, btnRetroceder;
 	private String nombreGuardado;
+	private ConexionUsuarios conexion;
 
 	
 	public DatosPersonales(String nombre) {
 		initialize();
-		nombreGuardado=nombre;
+		try {
+			conexion= new ConexionUsuarios();
+			nombreGuardado=nombre;
+			rellenarTextos();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	
@@ -27,24 +44,31 @@ public class DatosPersonales {
 		addVentana();		
 		
 		lblNombre = new JLabel("Nombre");
+		lblNombre.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblNombre();
 		
 		lblApellidos = new JLabel("Apellidos");
+		lblApellidos.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblApellidos();
 		
 		lblNtarjeta = new JLabel("N\u00BA de tarjeta");
+		lblNtarjeta.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblNtarjeta();
 		
 		lblTelefono = new JLabel("Tel\u00E9fono");
+		lblTelefono.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblTelefono();
 		
 		lblCorreo = new JLabel("Correo");
+		lblCorreo.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblCorreo();
 		
 		lblDireccion = new JLabel("Direcci\u00F3n");
+		lblDireccion.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblDireccion();
 		
 		lblFechaNac = new JLabel("Fecha de nacimiento");
+		lblFechaNac.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblFechaNac();
 		
 		textNombre = new JTextArea();
@@ -114,7 +138,7 @@ public class DatosPersonales {
 	}
 
 	public void addBtnModificar() {
-		btnModificar.setIcon(new ImageIcon(".//recursos/Modificar campos.png"));
+		btnModificar.setIcon(new ImageIcon("Modificar campos.png"));
 		btnModificar.setBackground(Color.WHITE);
 		btnModificar.setBounds(122, 524, 190, 44);
 		btnModificar.setBorder(null);
@@ -123,7 +147,7 @@ public class DatosPersonales {
 
 	public void addBtnCambiarContrasena() {
 		btnCambiarContrasena.setBackground(Color.WHITE);
-		btnCambiarContrasena.setIcon(new ImageIcon(".//recursos/Cambiar contrase\u00F1a.png"));
+		btnCambiarContrasena.setIcon(new ImageIcon("Cambiar contrase\u00F1a.png"));
 		btnCambiarContrasena.setBounds(112, 469, 210, 44);
 		btnCambiarContrasena.setBorder(null);
 		ventanaDatosPersonales.getContentPane().add(btnCambiarContrasena);
@@ -131,7 +155,7 @@ public class DatosPersonales {
 
 	public void addBtnRetroceder() {
 		btnRetroceder.setBackground(Color.WHITE);
-		btnRetroceder.setIcon(new ImageIcon(".//recursos/Retroceder.png"));
+		btnRetroceder.setIcon(new ImageIcon("Retroceder.png"));
 		btnRetroceder.setBounds(10, 11, 136, 33);
 		btnRetroceder.setBorder(null);
 		ventanaDatosPersonales.getContentPane().add(btnRetroceder);
@@ -140,84 +164,124 @@ public class DatosPersonales {
 	public void addTextFechaNac() {
 		textFechaNac.setBounds(72, 424, 283, 20);
 		textFechaNac.setColumns(10);
-		textFechaNac.setBackground(Color.LIGHT_GRAY);
+		textFechaNac.setBackground(SystemColor.menu);
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+	    textFechaNac.setBorder(BorderFactory.createCompoundBorder(border,
+	            BorderFactory.createEmptyBorder(0, 5, 0, 0)));
+		ventanaDatosPersonales.getContentPane().add(textNombre);
 		ventanaDatosPersonales.getContentPane().add(textFechaNac);
 	}
 
 	public void addTextDireccion() {
 		textDireccion.setBounds(72, 250, 283, 20);
 		textDireccion.setColumns(10);
-		textDireccion.setBackground(Color.LIGHT_GRAY);
+		textDireccion.setBackground(SystemColor.menu);
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+	    textDireccion.setBorder(BorderFactory.createCompoundBorder(border,
+	            BorderFactory.createEmptyBorder(0, 5, 0, 0)));
+		ventanaDatosPersonales.getContentPane().add(textNombre);
 		ventanaDatosPersonales.getContentPane().add(textDireccion);
 	}
 
 	public void addTextCorreo() {
 		textCorreo.setBounds(72, 308, 283, 20);
 		textCorreo.setColumns(10);
-		textCorreo.setBackground(Color.LIGHT_GRAY);
+		textCorreo.setBackground(SystemColor.menu);
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+	    textCorreo.setBorder(BorderFactory.createCompoundBorder(border,
+	            BorderFactory.createEmptyBorder(0, 5, 0, 0)));
+		ventanaDatosPersonales.getContentPane().add(textNombre);
 		ventanaDatosPersonales.getContentPane().add(textCorreo);
 	}
 
 	public void addTextTelefono() {
 		textTelefono.setBounds(72, 366, 283, 20);
 		textTelefono.setColumns(10);
-		textTelefono.setBackground(Color.LIGHT_GRAY);
+		textTelefono.setBackground(SystemColor.menu);
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+	    textTelefono.setBorder(BorderFactory.createCompoundBorder(border,
+	            BorderFactory.createEmptyBorder(0, 5, 0, 0)));
+		ventanaDatosPersonales.getContentPane().add(textNombre);
 		ventanaDatosPersonales.getContentPane().add(textTelefono);
 	}
 
 	public void addTextNtarjeta() {
 		textNtarjeta.setBounds(72, 192, 283, 20);
 		textNtarjeta.setColumns(10);
-		textNtarjeta.setBackground(Color.LIGHT_GRAY);
+		textNtarjeta.setBackground(SystemColor.menu);
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+	    textNtarjeta.setBorder(BorderFactory.createCompoundBorder(border,
+	            BorderFactory.createEmptyBorder(0, 5, 0, 0)));
+		ventanaDatosPersonales.getContentPane().add(textNombre);
 		ventanaDatosPersonales.getContentPane().add(textNtarjeta);
 	}
 
 	public void addTextApellidos() {
 		textApellidos.setBounds(72, 134, 283, 20);
 		textApellidos.setColumns(10);
-		textApellidos.setBackground(Color.LIGHT_GRAY);
+		textApellidos.setBackground(SystemColor.menu);
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+	    textApellidos.setBorder(BorderFactory.createCompoundBorder(border,
+	            BorderFactory.createEmptyBorder(0, 5, 0, 0)));
+		ventanaDatosPersonales.getContentPane().add(textNombre);
 		ventanaDatosPersonales.getContentPane().add(textApellidos);
 	}
 
 	public void addTextNombre() {
 		textNombre.setBounds(72, 76, 283, 20);
 		textNombre.setColumns(10);
-		textNombre.setBackground(Color.LIGHT_GRAY);
+		textNombre.setBackground(SystemColor.control);
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+	    textNombre.setBorder(BorderFactory.createCompoundBorder(border,
+	            BorderFactory.createEmptyBorder(0, 5, 0, 0)));
 		ventanaDatosPersonales.getContentPane().add(textNombre);
 	}
 
 	public void addLblFechaNac() {
-		lblFechaNac.setBounds(72, 404, 101, 14);
+		lblFechaNac.setBounds(72, 404, 283, 20);
 		ventanaDatosPersonales.getContentPane().add(lblFechaNac);
 	}
 
 	public void addLblDireccion() {
-		lblDireccion.setBounds(72, 230, 90, 14);
+		lblDireccion.setBounds(72, 230, 283, 20);
 		ventanaDatosPersonales.getContentPane().add(lblDireccion);
 	}
 
 	public void addLblCorreo() {
-		lblCorreo.setBounds(72, 288, 56, 14);
+		lblCorreo.setBounds(72, 288, 283, 20);
 		ventanaDatosPersonales.getContentPane().add(lblCorreo);
 	}
 
 	public void addLblTelefono() {
-		lblTelefono.setBounds(72, 346, 100, 14);
+		lblTelefono.setBounds(72, 346, 283, 20);
 		ventanaDatosPersonales.getContentPane().add(lblTelefono);
 	}
 
 	public void addLblNtarjeta() {
-		lblNtarjeta.setBounds(72, 172, 100, 14);
+		lblNtarjeta.setBounds(72, 172, 283, 20);
 		ventanaDatosPersonales.getContentPane().add(lblNtarjeta);
 	}
 
 	public void addLblApellidos() {
-		lblApellidos.setBounds(72, 114, 56, 14);
+		lblApellidos.setBounds(72, 114, 283, 20);
 		ventanaDatosPersonales.getContentPane().add(lblApellidos);
 	}
 
 	public void addLblNombre() {
-		lblNombre.setBounds(72, 56, 90, 14);
+		lblNombre.setBounds(72, 56, 283, 20);
 		ventanaDatosPersonales.getContentPane().add(lblNombre);
+	}
+	
+	private void rellenarTextos() throws SQLException {
+		String nombre=nombreGuardado;
+		System.out.println(nombre);
+		textNombre.setText(conexion.getNombre(nombre));
+		textApellidos.setText(conexion.getApellido(nombreGuardado));
+		textNtarjeta.setText(conexion.getNtargeta(nombreGuardado));
+		textTelefono.setText(conexion.getTelefono(nombreGuardado));
+		textCorreo.setText(conexion.getCorreo(nombreGuardado));
+		textDireccion.setText(conexion.getDirecion(nombreGuardado));
+		textFechaNac.setText(conexion.getFechaNaci(nombreGuardado));
+		
 	}
 }
