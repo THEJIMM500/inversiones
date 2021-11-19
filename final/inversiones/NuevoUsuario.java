@@ -105,12 +105,12 @@ public class NuevoUsuario {
 			public void actionPerformed(ActionEvent e) {
 				
 				if(ComprobarDatos.nombreUsuarioValido(textUsuario.getText())== true
-						&&ComprobarDatos.contraseÒaValido(textContrasena.getText())== true){
+						&&ComprobarDatos.contrase√±aValido(textContrasena.getText())== true){
 					
 					if(textContrasena.getText().equals(textConfirmar.getText())==true) {
 				        try {
 							if(conexion.registrarUsuario(textUsuario.getText(),textContrasena.getText())) {
-								JOptionPane.showMessageDialog(btnCrearCuenta, "Usuario creado. Ahora ser· redirigido a la pantalla de inicio.", "Operacion existosa", 1, null);
+								JOptionPane.showMessageDialog(btnCrearCuenta, "Usuario creado. Ahora ser√° redirigido a la pantalla de inicio.", "Operacion existosa", 1, null);
 								Thread.sleep(1000);
 								new InicioSesion();
 								ventanaRegistro.setVisible(false);
@@ -123,10 +123,10 @@ public class NuevoUsuario {
 							e1.printStackTrace();
 						}
 					}else {
-						JOptionPane.showMessageDialog(btnCrearCuenta, "Las contraseÒas no coinciden.", "Error en los valores", 0, null);
+						JOptionPane.showMessageDialog(btnCrearCuenta, "Las contrase√±as no coinciden.", "Error en los valores", 0, null);
 					}
 				}else {
-					JOptionPane.showMessageDialog(btnCrearCuenta, "El Usauario o la contraseÒa son"
+					JOptionPane.showMessageDialog(btnCrearCuenta, "El Usauario o la contrase√±a son"
 							+ " demasiado extensos. Asegurese de que ninguno supere los 30 caracteres.", "Error en los valores", 0, null);
 				}
 				
