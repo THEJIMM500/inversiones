@@ -32,7 +32,7 @@ public class Saldo {
 		ventanaSaldo.setVisible(true);
 		try {
 			conexion = new ConexionUsuarios();
-			textSaldo.setText(conexion.getSaldo(nombreGuardado)+"€");
+			textSaldo.setText(conexion.getSaldo(nombreGuardado)+"â‚¬");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
