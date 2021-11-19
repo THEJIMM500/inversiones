@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.Font;
 
 public class CambiarContrasena {
 
@@ -17,6 +18,7 @@ public class CambiarContrasena {
 	public CambiarContrasena(String nombreGuardado) {
 		initialize();
 		this.nombreGuardado = nombreGuardado;
+		
 	}
 
 	/**
@@ -27,12 +29,14 @@ public class CambiarContrasena {
 		addVentana();
 		
 		lblContrasena = new JLabel("Contrase\u00F1a");
+		lblContrasena.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblContrasena();
 		
 		textContrasena = new JTextField();
 		addTextContrasena();
 		
 		lblConfirmar = new JLabel("Confirma contrase\u00F1a");
+		lblConfirmar.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addLblConfirmar();
 		
 		textConfirmar = new JTextField();
@@ -66,6 +70,7 @@ public class CambiarContrasena {
 		btnRetroceder.setIcon(new ImageIcon(".//recursos/Retroceder.png"));
 		btnRetroceder.setBackground(Color.WHITE);
 		btnRetroceder.setBounds(10, 11, 136, 33);
+		btnRetroceder.setBorder(null);
 		ventanaCambiarContrasena.getContentPane().add(btnRetroceder);
 	}
 
@@ -84,7 +89,7 @@ public class CambiarContrasena {
 	}
 
 	public void addLblConfirmar() {
-		lblConfirmar.setBounds(72, 132, 150, 14);
+		lblConfirmar.setBounds(72, 132, 283, 20);
 		ventanaCambiarContrasena.getContentPane().add(lblConfirmar);
 	}
 
@@ -95,7 +100,7 @@ public class CambiarContrasena {
 	}
 
 	public void addLblContrasena() {
-		lblContrasena.setBounds(72, 74, 155, 14);
+		lblContrasena.setBounds(72, 74, 283, 20);
 		ventanaCambiarContrasena.getContentPane().add(lblContrasena);
 	}
 	
