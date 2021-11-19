@@ -223,7 +223,7 @@ public class Comprar {
 							}
 							
 						} else {
-							JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad v·lida", "Error", 2, null);
+							JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad v√°lida", "Error", 2, null);
 						}
 						
 					}
@@ -378,7 +378,7 @@ public class Comprar {
 						}
 						
 					} else {
-						JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad v·lida", "Error", 2, null);
+						JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad v√°lida", "Error", 2, null);
 					}
 				}
 			
