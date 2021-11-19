@@ -86,7 +86,12 @@ public class Vender {
 			public void actionPerformed(ActionEvent e) {
 				int numeroAccioneActuales = 0;
 				double valorActual=0;
-				double saldoActual=0;
+				double saldoActual = 0;
+				try {
+					saldoActual = conexionUsuarios.getSaldo(nombreGuardado);
+				} catch (SQLException e2) {
+					e2.printStackTrace();
+				}
 				
 				if (checkValor.isSelected()) {
 					System.out.println("Haz lo de la casilla marcada");
