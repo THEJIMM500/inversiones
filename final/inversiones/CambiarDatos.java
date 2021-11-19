@@ -294,8 +294,8 @@ public class CambiarDatos {
 			System.out.println(destinatario[i]);
 		}
 		
-		String asunto = "Correo de verificación";
-		String texto = "Has completado la verificación de usuario para ESCOLAPInversions.";
+		String asunto = "Correo de verificaciÃ³n";
+		String texto = "Has completado la verificaciÃ³n de usuario para ESCOLAPInversions.";
 
 		sesionEmail = Session.getDefaultInstance(propiedadesEmail, null);
 		mensajeEmail = new MimeMessage(sesionEmail);
