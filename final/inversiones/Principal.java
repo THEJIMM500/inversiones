@@ -69,7 +69,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if((conexionUsuarios.getValidado(nombreGuardado) == 0)) {
-						JOptionPane.showMessageDialog(btnVender, "Aún no has validado tu usuario", "Error de validación", 2, null);
+						JOptionPane.showMessageDialog(btnVender, "AÃºn no has validado tu usuario", "Error de validaciÃ³n", 2, null);
 					} else {
 						if (empresaSelecionada  ==null) {
 							JOptionPane.showMessageDialog(btnVender, "Selecciona una empresa", "Error", 0, null);
@@ -91,7 +91,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if((conexionUsuarios.getValidado(nombreGuardado) == 0)) {
-						JOptionPane.showMessageDialog(btnVender, "Aún no has validado a tu usuario", "Error de validación", 2, null);
+						JOptionPane.showMessageDialog(btnVender, "AÃºn no has validado a tu usuario", "Error de validaciÃ³n", 2, null);
 					} else {
 						if (empresaSelecionada  ==null) {
 							JOptionPane.showMessageDialog(btnVender, "Selecciona una empresa", "Error", 0, null);
@@ -153,7 +153,7 @@ public class Principal {
 			}
 		});
 		
-		btnCerrarSesion = new JMenuItem("Cerrar sesión");
+		btnCerrarSesion = new JMenuItem("Cerrar sesiÃ³n");
 		btnCerrarSesion.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		addBtnCerrarSesion();
 		btnCerrarSesion.addActionListener(new ActionListener() {
@@ -182,7 +182,7 @@ public class Principal {
 				double valorAcciones;
 				try {
 					valorAcciones = conexionEmpresas.getValorAccion("Amazon");
-					textValor.setText(valorAcciones+"€");
+					textValor.setText(valorAcciones+"â‚¬");
 					lblValor.setText("Valor actual de Amazon");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -199,7 +199,7 @@ public class Principal {
 				double valorAcciones;
 				try {
 					valorAcciones = conexionEmpresas.getValorAccion("Apple");
-					textValor.setText(valorAcciones+"€");
+					textValor.setText(valorAcciones+"â‚¬");
 					lblValor.setText("Valor actual de Apple");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -216,7 +216,7 @@ public class Principal {
 				double valorAcciones;
 				try {
 					valorAcciones = conexionEmpresas.getValorAccion("Facebook");
-					textValor.setText(valorAcciones+"€");
+					textValor.setText(valorAcciones+"â‚¬");
 					lblValor.setText("Valor actual de Facebook");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -233,7 +233,7 @@ public class Principal {
 				double valorAcciones;
 				try {
 					valorAcciones = conexionEmpresas.getValorAccion("Google");
-					textValor.setText(valorAcciones+"€");
+					textValor.setText(valorAcciones+"â‚¬");
 					lblValor.setText("Valor actual de Google");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -250,7 +250,7 @@ public class Principal {
 				double valorAcciones;
 				try {
 					valorAcciones = conexionEmpresas.getValorAccion("Linkedin");
-					textValor.setText(valorAcciones+"€");
+					textValor.setText(valorAcciones+"â‚¬");
 					lblValor.setText("Valor actual de Linkedin");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -267,7 +267,7 @@ public class Principal {
 				double valorAcciones;
 				try {
 					valorAcciones = conexionEmpresas.getValorAccion("Twitch");
-					textValor.setText(valorAcciones+"€");
+					textValor.setText(valorAcciones+"â‚¬");
 					lblValor.setText("Valor actual de Twitch");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -284,7 +284,7 @@ public class Principal {
 				double valorAcciones;
 				try {
 					valorAcciones = conexionEmpresas.getValorAccion("Microsoft");
-					textValor.setText(valorAcciones+"€");
+					textValor.setText(valorAcciones+"â‚¬");
 					lblValor.setText("Valor actual de Microsoft");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -301,7 +301,7 @@ public class Principal {
 				double valorAcciones;
 				try {
 					valorAcciones = conexionEmpresas.getValorAccion("GitHub");
-					textValor.setText(valorAcciones+"€");
+					textValor.setText(valorAcciones+"â‚¬");
 					lblValor.setText("Valor actual de GitHub");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -318,7 +318,7 @@ public class Principal {
 				double valorAcciones;
 				try {
 					valorAcciones = conexionEmpresas.getValorAccion("Paypal");
-					textValor.setText(valorAcciones+"€");
+					textValor.setText(valorAcciones+"â‚¬");
 					lblValor.setText("Valor actual de Paypal");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
