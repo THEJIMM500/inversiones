@@ -33,7 +33,7 @@ public class CambiarDatos {
 	private JFrame ventanaCambiarDatos;
 	private JLabel lblNombre, lblApellidos, lblNtarjeta, lblTelefono, lblCorreo, lblDireccion, lblFechaNac;
 	private JTextField textNombre, textApellidos, textNtarjeta, textTelefono, textCorreo, textDireccion, textFechaNac;
-	private JButton btnVerificar, btnModificar, btnRetroceder;
+	private JButton btnCompletar, btnRetroceder;
 	private String nombreGuardado;
 	private ConexionUsuarios conexion;
 	static Properties propiedadesEmail;
@@ -116,30 +116,9 @@ public class CambiarDatos {
 			}
 		});
 		
-		btnVerificar = new JButton("");
-		addBtnCambiarContrasena();
-		btnVerificar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				try {
-					propiedadesServidorEmail();
-					crearMensajeEmail();
-					enviarEmail();
-					conexion.validar(nombreGuardado);
-				} catch (AddressException e1) {
-					e1.printStackTrace();
-				} catch (MessagingException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-
-			}
-		});
-		
-		btnModificar = new JButton("");
-		addBtnModificar();
-		btnModificar.addActionListener(new ActionListener() {
+		btnCompletar = new JButton("");
+		addBtnCompletar();
+		btnCompletar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -153,8 +132,17 @@ public class CambiarDatos {
 						conexion.setFechaNaci(nombreGuardado, textFechaNac.getText());
 						conexion.setNtarjeta(nombreGuardado, textNtarjeta.getText());
 						conexion.setTelefono(nombreGuardado, textTelefono.getText());
+						
+						propiedadesServidorEmail();
+						crearMensajeEmail();
+						enviarEmail();
+						conexion.validar(nombreGuardado);
 					}
 				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} catch (AddressException e1) {
+					e1.printStackTrace();
+				} catch (MessagingException e1) {
 					e1.printStackTrace();
 				}
 				
@@ -173,20 +161,12 @@ public class CambiarDatos {
 		ventanaCambiarDatos.getContentPane().setLayout(null);
 	}
 
-	public void addBtnModificar() {
-		btnModificar.setIcon(new ImageIcon("Modificar campos.png"));
-		btnModificar.setBackground(Color.WHITE);
-		btnModificar.setBounds(122, 524, 190, 44);
-		btnModificar.setBorder(null);
-		ventanaCambiarDatos.getContentPane().add(btnModificar);
-	}
-
-	public void addBtnCambiarContrasena() {
-		btnVerificar.setBackground(Color.WHITE);
-		btnVerificar.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\Completar.png"));
-		btnVerificar.setBounds(153, 471, 127, 42);
-		btnVerificar.setBorder(null);
-		ventanaCambiarDatos.getContentPane().add(btnVerificar);
+	public void addBtnCompletar() {
+		btnCompletar.setIcon(new ImageIcon("C:\\Users\\ro_cl\\Documents\\DAM\\Programaci\u00F3n\\Eclipse\\eclipse-workspace\\2\u00BAdam\\Completar.png"));
+		btnCompletar.setBackground(Color.WHITE);
+		btnCompletar.setBounds(150, 485, 127, 42);
+		btnCompletar.setBorder(null);
+		ventanaCambiarDatos.getContentPane().add(btnCompletar);
 	}
 
 	public void addBtnRetroceder() {
