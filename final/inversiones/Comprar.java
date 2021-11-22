@@ -3,17 +3,14 @@ package inversiones;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
 import javax.swing.*;
 import tratadoDatos.ConexionAcciones;
 import tratadoDatos.ConexionEmpresas;
 import tratadoDatos.ConexionHistorial;
 import tratadoDatos.ConexionUsuarios;
-
 import java.awt.Color;
 import java.awt.Font;
 
-//cambiar el saldo
 public class Comprar {
 	
 	private ConexionAcciones conexionAcciones;
@@ -103,6 +100,7 @@ public class Comprar {
 									valorActual = conexionEmpresas.getValorAccion("Amazon");
 									if(saldoActual>(valorActual*numeroAcciones)) {
 										tradeo = new TradeoAlValor(precioObjetivo, "Amazon", nombreGuardado, true);
+										tradeo.run();
 										JOptionPane.showMessageDialog(btnCompletar, "Compra realizada", "Compra", 3, null);
 									}else {
 										JOptionPane.showMessageDialog(btnCompletar, "Saldo insuficiente", "Error", 2, null);
@@ -117,6 +115,7 @@ public class Comprar {
 									valorActual = conexionEmpresas.getValorAccion("Apple");
 									if(saldoActual>(valorActual*numeroAcciones)) {
 										tradeo = new TradeoAlValor(precioObjetivo, "Apple", nombreGuardado, true);
+										tradeo.run();
 										JOptionPane.showMessageDialog(btnCompletar, "Compra realizada", "Compra", 3, null);
 									}else {
 										JOptionPane.showMessageDialog(btnCompletar, "Saldo insuficiente", "Error", 2, null);
@@ -131,6 +130,7 @@ public class Comprar {
 									valorActual = conexionEmpresas.getValorAccion("Facebook");
 									if(saldoActual>(valorActual*numeroAcciones)) {
 										tradeo = new TradeoAlValor(precioObjetivo, "Facebook", nombreGuardado, true);
+										tradeo.run();
 										JOptionPane.showMessageDialog(btnCompletar, "Compra realizada", "Compra", 3, null);
 									}else {
 										JOptionPane.showMessageDialog(btnCompletar, "Saldo insuficiente", "Error", 2, null);
@@ -145,6 +145,7 @@ public class Comprar {
 									valorActual = conexionEmpresas.getValorAccion("Google");
 									if(saldoActual>(valorActual*numeroAcciones)) {
 										tradeo = new TradeoAlValor(precioObjetivo, "Google", nombreGuardado, true);
+										tradeo.run();
 										JOptionPane.showMessageDialog(btnCompletar, "Compra realizada", "Compra", 3, null);
 									}else {
 										JOptionPane.showMessageDialog(btnCompletar, "Saldo insuficiente", "Error", 2, null);
@@ -160,6 +161,7 @@ public class Comprar {
 									valorActual = conexionEmpresas.getValorAccion("Linkedin");
 									if(saldoActual>(valorActual*numeroAcciones)) {
 										tradeo = new TradeoAlValor(precioObjetivo, "Linkedin", nombreGuardado, true);
+										tradeo.run();
 										JOptionPane.showMessageDialog(btnCompletar, "Compra realizada", "Compra", 3, null);
 									}else {
 										JOptionPane.showMessageDialog(btnCompletar, "Saldo insuficiente", "Error", 2, null);
@@ -174,6 +176,7 @@ public class Comprar {
 									valorActual = conexionEmpresas.getValorAccion("Twitch");
 									if(saldoActual>(valorActual*numeroAcciones)) {
 										tradeo = new TradeoAlValor(precioObjetivo, "Twitch", nombreGuardado, true);
+										tradeo.run();
 										JOptionPane.showMessageDialog(btnCompletar, "Compra realizada", "Compra", 3, null);
 									}else {
 										JOptionPane.showMessageDialog(btnCompletar, "Saldo insuficiente", "Error", 2, null);
@@ -188,6 +191,7 @@ public class Comprar {
 									valorActual = conexionEmpresas.getValorAccion("Microsoft");
 									if(saldoActual>(valorActual*numeroAcciones)) {
 										tradeo = new TradeoAlValor(precioObjetivo, "Microsoft", nombreGuardado, true);
+										tradeo.run();
 										JOptionPane.showMessageDialog(btnCompletar, "Compra realizada", "Compra", 3, null);
 									}else {
 										JOptionPane.showMessageDialog(btnCompletar, "Saldo insuficiente", "Error", 2, null);
@@ -203,6 +207,7 @@ public class Comprar {
 									valorActual = conexionEmpresas.getValorAccion("GitHub");
 									if(saldoActual>(valorActual*numeroAcciones)) {
 										tradeo = new TradeoAlValor(precioObjetivo, "GitHub", nombreGuardado, true);
+										tradeo.run();
 										JOptionPane.showMessageDialog(btnCompletar, "Compra realizada", "Compra", 3, null);
 									}else {
 										JOptionPane.showMessageDialog(btnCompletar, "Saldo insuficiente", "Error", 2, null);
@@ -217,6 +222,7 @@ public class Comprar {
 									valorActual = conexionEmpresas.getValorAccion("Paypal");
 									if(saldoActual>(valorActual*numeroAcciones)) {
 										tradeo = new TradeoAlValor(precioObjetivo, "Paypal", nombreGuardado, true);
+										tradeo.run();
 										JOptionPane.showMessageDialog(btnCompletar, "Compra realizada", "Compra", 3, null);
 									}else {
 										JOptionPane.showMessageDialog(btnCompletar, "Saldo insuficiente", "Error", 2, null);
@@ -231,6 +237,8 @@ public class Comprar {
 							JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad válida", "Error", 2, null);
 						}
 						
+					} else {
+						JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad válida", "Error", 2, null);
 					}
 				} else {
 				
