@@ -1,6 +1,5 @@
 package inversiones;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -44,13 +43,13 @@ public class CambiarDatos {
 	
 	public CambiarDatos(String nombreGuardado) {
 		this.nombreGuardado=nombreGuardado;
-		initialize();
-		ventanaCambiarDatos.setVisible(true);
 		try {
 			conexion= new ConexionUsuarios();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		initialize();
+		ventanaCambiarDatos.setVisible(true);
 	}
 
 	
