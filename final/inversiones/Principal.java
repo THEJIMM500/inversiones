@@ -45,9 +45,7 @@ public class Principal {
 		ventanaPrincipal.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		ventanaPrincipal = new JFrame();
 		addVentana();
