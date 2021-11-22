@@ -1,7 +1,5 @@
 package inversiones;
 
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -33,7 +31,6 @@ public class DatosPersonales {
 			rellenarTextos();
 		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
