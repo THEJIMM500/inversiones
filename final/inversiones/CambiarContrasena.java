@@ -21,9 +21,7 @@ public class CambiarContrasena {
 		
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		ventanaCambiarContrasena = new JFrame();
 		addVentana();
