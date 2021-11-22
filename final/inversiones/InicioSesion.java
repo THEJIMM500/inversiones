@@ -64,9 +64,9 @@ public class InicioSesion {
 		addBtnEnlace();
 		btnEnlace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {					
-					String url = "http://localhost/phpmyadmin/index.php";
-					Desktop.getDesktop().browse(URI.create(url));					
+				try {
+					InicioCAT cat = new InicioCAT();
+				    	ventanaInicioSesion.setVisible(false);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
