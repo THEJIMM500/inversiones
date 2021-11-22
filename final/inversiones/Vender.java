@@ -1,17 +1,13 @@
 package inversiones;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
 import javax.swing.*;
-
 import tratadoDatos.ConexionAcciones;
 import tratadoDatos.ConexionEmpresas;
 import tratadoDatos.ConexionHistorial;
 import tratadoDatos.ConexionUsuarios;
-
 import java.awt.Color;
 import java.awt.Font;
 
@@ -48,9 +44,7 @@ public class Vender {
 		}
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
 		ventanaVender = new JFrame();
 		addVentana();
@@ -107,13 +101,13 @@ public class Vender {
 						
 						int numeroAccionesAVender = Integer.parseInt(textCantidad.getText());
 							if(numeroAccionesAVender > 0) {
-								if (empresaSeleccionada== Empresas.Amazon ) {
-									
+								if (empresaSeleccionada== Empresas.Amazon ) {									
 									try {
 										numeroAccioneActuales = conexionAcciones.getNumeroAcciones("Amazon", nombreGuardado);
 										valorActual = conexionEmpresas.getValorAccion("Amazon");
 										if(numeroAccioneActuales>=numeroAccionesAVender) {
 											tradeo = new TradeoAlValor(precioObjetivo, "Amazon", nombreGuardado, false);
+											tradeo.run();
 											JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 										}else {
 											JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
@@ -129,6 +123,7 @@ public class Vender {
 										valorActual = conexionEmpresas.getValorAccion("Apple");
 										if(numeroAccioneActuales>=numeroAccionesAVender) {
 											tradeo = new TradeoAlValor(precioObjetivo, "Apple", nombreGuardado, false);
+											tradeo.run();
 											JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 										}else {
 											JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
@@ -144,6 +139,7 @@ public class Vender {
 										valorActual = conexionEmpresas.getValorAccion("Facebook");
 										if(numeroAccioneActuales>=numeroAccionesAVender) {
 											tradeo = new TradeoAlValor(precioObjetivo, "Facebook", nombreGuardado, false);
+											tradeo.run();
 											JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 										}else {
 											JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
@@ -159,6 +155,7 @@ public class Vender {
 										valorActual = conexionEmpresas.getValorAccion("Google");
 										if(numeroAccioneActuales>=numeroAccionesAVender) {
 											tradeo = new TradeoAlValor(precioObjetivo, "Google", nombreGuardado, false);
+											tradeo.run();
 											JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 										}else {
 											JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
@@ -175,6 +172,7 @@ public class Vender {
 										valorActual = conexionEmpresas.getValorAccion("Linkedin");
 										if(numeroAccioneActuales>=numeroAccionesAVender) {
 											tradeo = new TradeoAlValor(precioObjetivo, "Linkedin", nombreGuardado, false);
+											tradeo.run();
 											JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 										}else {
 											JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
@@ -190,6 +188,7 @@ public class Vender {
 										valorActual = conexionEmpresas.getValorAccion("Twitch");
 										if(numeroAccioneActuales>=numeroAccionesAVender) {
 											tradeo = new TradeoAlValor(precioObjetivo, "Twitch", nombreGuardado, false);
+											tradeo.run();
 											JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 										}else {
 											JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
@@ -205,6 +204,7 @@ public class Vender {
 										valorActual = conexionEmpresas.getValorAccion("Microsoft");
 										if(numeroAccioneActuales>=numeroAccionesAVender) {
 											tradeo = new TradeoAlValor(precioObjetivo, "Microsoft", nombreGuardado, false);
+											tradeo.run();
 											JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 										}else {
 											JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
@@ -221,6 +221,7 @@ public class Vender {
 										valorActual = conexionEmpresas.getValorAccion("Git");
 										if(numeroAccioneActuales>=numeroAccionesAVender) {
 											tradeo = new TradeoAlValor(precioObjetivo, "GitHub", nombreGuardado, false);
+											tradeo.run();
 											JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 										}else {
 											JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
@@ -236,6 +237,7 @@ public class Vender {
 										valorActual = conexionEmpresas.getValorAccion("Paypal");
 										if(numeroAccioneActuales>=numeroAccionesAVender) {
 											tradeo = new TradeoAlValor(precioObjetivo, "Paypal", nombreGuardado, false);
+											tradeo.run();
 											JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 										}else {
 											JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
@@ -249,6 +251,8 @@ public class Vender {
 							} else {
 								JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad de válida", "Error", 2, null);
 							}
+					} else {
+						JOptionPane.showMessageDialog(btnCompletar, "Introduce una cantidad válida", "Error", 2, null);
 					}
 				} else {
 				
@@ -274,7 +278,6 @@ public class Vender {
 									JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 							
@@ -283,14 +286,13 @@ public class Vender {
 								numeroAccioneActuales = conexionAcciones.getNumeroAcciones("Apple", nombreGuardado);
 								valorActual = conexionEmpresas.getValorAccion("Apple");
 								if(numeroAccioneActuales>=numeroAccionesAVender) {
-									venderAmazon();
+									venderApple();
 									conexionUsuarios.setSaldo(nombreGuardado, (saldoActual + (valorActual*numeroAccionesAVender)));
 									JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 								}else {
 									JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 							
@@ -299,14 +301,13 @@ public class Vender {
 								numeroAccioneActuales = conexionAcciones.getNumeroAcciones("Facebook", nombreGuardado);
 								valorActual = conexionEmpresas.getValorAccion("Facebook");
 								if(numeroAccioneActuales>=numeroAccionesAVender) {
-									venderAmazon();
+									venderFacebook();
 									conexionUsuarios.setSaldo(nombreGuardado, (saldoActual + (valorActual*numeroAccionesAVender)));
 									JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 								}else {
 									JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 							
@@ -315,14 +316,13 @@ public class Vender {
 								numeroAccioneActuales = conexionAcciones.getNumeroAcciones("Google", nombreGuardado);
 								valorActual = conexionEmpresas.getValorAccion("Google");
 								if(numeroAccioneActuales>=numeroAccionesAVender) {
-									venderAmazon();
+									venderGoogle();
 									conexionUsuarios.setSaldo(nombreGuardado, (saldoActual + (valorActual*numeroAccionesAVender)));
 									JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 								}else {
 									JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 							
@@ -332,14 +332,13 @@ public class Vender {
 								numeroAccioneActuales = conexionAcciones.getNumeroAcciones("Linkedin", nombreGuardado);
 								valorActual = conexionEmpresas.getValorAccion("Linkedin");
 								if(numeroAccioneActuales>=numeroAccionesAVender) {
-									venderAmazon();
+									venderLinkedin();
 									conexionUsuarios.setSaldo(nombreGuardado, (saldoActual + (valorActual*numeroAccionesAVender)));
 									JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 								}else {
 									JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 							
@@ -348,14 +347,13 @@ public class Vender {
 								numeroAccioneActuales = conexionAcciones.getNumeroAcciones("Twitch", nombreGuardado);
 								valorActual = conexionEmpresas.getValorAccion("Twitch");
 								if(numeroAccioneActuales>=numeroAccionesAVender) {
-									venderAmazon();
+									venderTwitch();
 									conexionUsuarios.setSaldo(nombreGuardado, (saldoActual + (valorActual*numeroAccionesAVender)));
 									JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 								}else {
 									JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 							
@@ -364,14 +362,13 @@ public class Vender {
 								numeroAccioneActuales = conexionAcciones.getNumeroAcciones("Microsoft", nombreGuardado);
 								valorActual = conexionEmpresas.getValorAccion("Microsoft");
 								if(numeroAccioneActuales>=numeroAccionesAVender) {
-									venderAmazon();
+									venderMicrosoft();
 									conexionUsuarios.setSaldo(nombreGuardado, (saldoActual + (valorActual*numeroAccionesAVender)));
 									JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 								}else {
 									JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 							
@@ -381,14 +378,13 @@ public class Vender {
 								numeroAccioneActuales = conexionAcciones.getNumeroAcciones("Git", nombreGuardado);
 								valorActual = conexionEmpresas.getValorAccion("Git");
 								if(numeroAccioneActuales>=numeroAccionesAVender) {
-									venderAmazon();
+									venderGit();
 									conexionUsuarios.setSaldo(nombreGuardado, (saldoActual + (valorActual*numeroAccionesAVender)));
 									JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 								}else {
 									JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 							
@@ -397,14 +393,13 @@ public class Vender {
 								numeroAccioneActuales = conexionAcciones.getNumeroAcciones("Paypal", nombreGuardado);
 								valorActual = conexionEmpresas.getValorAccion("Paypal");
 								if(numeroAccioneActuales>=numeroAccionesAVender) {
-									venderAmazon();
+									venderPaypal();
 									conexionUsuarios.setSaldo(nombreGuardado, (saldoActual + (valorActual*numeroAccionesAVender)));
 									JOptionPane.showMessageDialog(btnCompletar, "Venta realizada", "Venta", 3, null);
 								}else {
 									JOptionPane.showMessageDialog(btnCompletar, "Acciones insuficiente", "Error", 2, null);
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 						}
@@ -479,60 +474,61 @@ public class Vender {
 		btnCancelar.setBorder(null);
 		ventanaVender.getContentPane().add(btnCancelar);
 	}
-	private void comprarPaypal() throws SQLException {
+	
+	private void venderPaypal() throws SQLException {
 		int acciones = Integer.parseInt(textCantidad.getText());
 		conexionAcciones.actualizarBaseDatos("Paypal", nombreGuardado, acciones, false);
 		conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Paypal", textCantidad.getText(), "compra");
-}
+	}
 
-private void comprarGit() throws SQLException {
-	int acciones = Integer.parseInt(textCantidad.getText());
-	conexionAcciones.actualizarBaseDatos("GitHub", nombreGuardado, acciones, false);
-	conexionHistorial.insertaTransaccion(ID, nombreGuardado, "GitHub", textCantidad.getText(), "compra");
-}
-
-private void comprarMicrosoft() throws SQLException {
-	int acciones = Integer.parseInt(textCantidad.getText());
-	conexionAcciones.actualizarBaseDatos("GitHub", nombreGuardado, acciones, false);
-	conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Microsoft", textCantidad.getText(), "compra");
-}
-
-private void comprarTwitch() throws SQLException {
-	int acciones = Integer.parseInt(textCantidad.getText());
-	conexionAcciones.actualizarBaseDatos("Twitch", nombreGuardado, acciones, false);
-	conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Twitch", textCantidad.getText(), "compra");
-}
-
-private void comprarLinkedin() throws SQLException {
-	int acciones = Integer.parseInt(textCantidad.getText());
-	conexionAcciones.actualizarBaseDatos("Linkedin", nombreGuardado, acciones, false);
-	conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Linkedin", textCantidad.getText(), "compra");
-}
-
-private void comprarGoogle() throws SQLException {
-	int acciones = Integer.parseInt(textCantidad.getText());
-	conexionAcciones.actualizarBaseDatos("GitHub", nombreGuardado, acciones, false);
-	conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Google", textCantidad.getText(), "compra");		
-}
-
-private void comprarFacebook() throws SQLException {
-	int acciones = Integer.parseInt(textCantidad.getText());
-	conexionAcciones.actualizarBaseDatos("Facebook", nombreGuardado, acciones, false);
-	conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Facebook", textCantidad.getText(), "compra");
-
-}
-
-private void comprarApple() throws SQLException {
-	int acciones = Integer.parseInt(textCantidad.getText());
-	conexionAcciones.actualizarBaseDatos("Apple", nombreGuardado, acciones, false);
-	conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Apple", textCantidad.getText(), "compra");
+	private void venderGit() throws SQLException {
+		int acciones = Integer.parseInt(textCantidad.getText());
+		conexionAcciones.actualizarBaseDatos("GitHub", nombreGuardado, acciones, false);
+		conexionHistorial.insertaTransaccion(ID, nombreGuardado, "GitHub", textCantidad.getText(), "compra");
+	}
 	
-}
-
-private void venderAmazon() throws SQLException {
-	int acciones = Integer.parseInt(textCantidad.getText());
-	conexionAcciones.actualizarBaseDatos("Amazon", nombreGuardado, acciones, false);
-	conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Amazon", textCantidad.getText(), "venta");
+	private void venderMicrosoft() throws SQLException {
+		int acciones = Integer.parseInt(textCantidad.getText());
+		conexionAcciones.actualizarBaseDatos("GitHub", nombreGuardado, acciones, false);
+		conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Microsoft", textCantidad.getText(), "compra");
+	}
 	
-}
+	private void venderTwitch() throws SQLException {
+		int acciones = Integer.parseInt(textCantidad.getText());
+		conexionAcciones.actualizarBaseDatos("Twitch", nombreGuardado, acciones, false);
+		conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Twitch", textCantidad.getText(), "compra");
+	}
+	
+	private void venderLinkedin() throws SQLException {
+		int acciones = Integer.parseInt(textCantidad.getText());
+		conexionAcciones.actualizarBaseDatos("Linkedin", nombreGuardado, acciones, false);
+		conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Linkedin", textCantidad.getText(), "compra");
+	}
+	
+	private void venderGoogle() throws SQLException {
+		int acciones = Integer.parseInt(textCantidad.getText());
+		conexionAcciones.actualizarBaseDatos("GitHub", nombreGuardado, acciones, false);
+		conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Google", textCantidad.getText(), "compra");		
+	}
+	
+	private void venderFacebook() throws SQLException {
+		int acciones = Integer.parseInt(textCantidad.getText());
+		conexionAcciones.actualizarBaseDatos("Facebook", nombreGuardado, acciones, false);
+		conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Facebook", textCantidad.getText(), "compra");
+	
+	}
+	
+	private void venderApple() throws SQLException {
+		int acciones = Integer.parseInt(textCantidad.getText());
+		conexionAcciones.actualizarBaseDatos("Apple", nombreGuardado, acciones, false);
+		conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Apple", textCantidad.getText(), "compra");
+		
+	}
+	
+	private void venderAmazon() throws SQLException {
+		int acciones = Integer.parseInt(textCantidad.getText());
+		conexionAcciones.actualizarBaseDatos("Amazon", nombreGuardado, acciones, false);
+		conexionHistorial.insertaTransaccion(ID, nombreGuardado, "Amazon", textCantidad.getText(), "venta");
+		
+	}
 }
