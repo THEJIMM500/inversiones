@@ -1,6 +1,5 @@
 package inversiones;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
@@ -26,26 +25,7 @@ public class InicioSesion {
 	private String nombreGuardado;
 	private JButton btnEnlace;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InicioSesion window = new InicioSesion();
-					window.ventanaInicioSesion.setVisible(true);
-					//window.ventanaInicioSesion.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
 	public InicioSesion() {
 		try {
 			conexion = new ConexionUsuarios();
@@ -57,9 +37,7 @@ public class InicioSesion {
 		
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		ventanaInicioSesion = new JFrame();
 		addVentana();
