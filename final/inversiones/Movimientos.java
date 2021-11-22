@@ -37,7 +37,7 @@ public class Movimientos {
 
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 77, 414, 173);
+		scrollPane.setBounds(10, 77, 494, 173);
 		ventanaMovimientos.getContentPane().add(scrollPane);
 		
 		model = new DefaultTableModel();
@@ -61,7 +61,7 @@ public class Movimientos {
 	private void addVentana() {
 		ventanaMovimientos.setTitle("Movimientos");
 		ventanaMovimientos.getContentPane().setForeground(Color.WHITE);
-		ventanaMovimientos.setBounds(100, 100, 450, 300);
+		ventanaMovimientos.setBounds(100, 100, 530, 300);
 		ventanaMovimientos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventanaMovimientos.getContentPane().setLayout(null);
 	}
@@ -74,6 +74,8 @@ public class Movimientos {
 				"ID", "Usuario", "Empresa", "Valor", "Tipo", "Fecha"
 			}
 		));
+		tableHistorial.getColumnModel().getColumn(0).setPreferredWidth(35);
+		tableHistorial.getColumnModel().getColumn(5).setPreferredWidth(115);
 		
 		conexion = new ConexionHistorial();
 		ArrayList<Integer> listaIds = conexion.getIds(nombreGuardado);
@@ -100,3 +102,4 @@ public class Movimientos {
 		ventanaMovimientos.getContentPane().add(btnRetroceder);
 	}
 }
+
