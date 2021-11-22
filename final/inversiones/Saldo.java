@@ -1,6 +1,5 @@
 package inversiones;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -22,9 +21,7 @@ public class Saldo {
 	private JTextArea textSaldo;
 	private String nombreGuardado;
 	private ConexionUsuarios conexion;
-
-
-
+	
 
 	public Saldo(String nombreGuardado) {
 		initialize();
